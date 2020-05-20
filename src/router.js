@@ -42,8 +42,8 @@ router.route('/students')
   .post(Students.createStudent);
 
 router.route('/students/:id')
-  .get(StartupUsers.getStudent)
-  .put(StartupUsers.updateStudent)
-  .delete(StartupUsers.deleteStudent);
+  .get(Students.getStudent)
+  .put(Students.updateStudent)
+  .delete(Students.deleteStudent);
 
 export default router;
