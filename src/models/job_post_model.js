@@ -4,7 +4,6 @@ const JobPostSchema = new Schema({
   startup_id: String,
   title: String,
   description: String,
-  pending: Boolean,
   industry: String,
   required_skills: Array,
   preferred_skills: Array,

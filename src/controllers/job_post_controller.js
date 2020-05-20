@@ -5,7 +5,6 @@ export const createPost = (req, res) => {
   jobPost.startup_id = req.body.startup_id;
   jobPost.title = req.body.title;
   jobPost.description = req.body.description;
-  jobPost.pending = req.body.pending;
   jobPost.industry = req.body.industry;
   jobPost.required_skills = req.body.required_skills;
   jobPost.preferred_skills = req.body.preferred_skills;
