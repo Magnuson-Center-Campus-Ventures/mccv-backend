@@ -2,6 +2,7 @@ import { Router } from 'express';
 import * as JobPosts from './controllers/job_post_controller';
 import * as Startups from './controllers/startup_controller';
 import * as StartupUsers from './controllers/startup_user_controller';
+import * as Students from './controllers/student_controller';
 
 const router = Router();
 
@@ -35,5 +36,14 @@ router.route('/startupusers/:id')
   .get(StartupUsers.getStartupUser)
   .put(StartupUsers.updateStartupUser)
   .delete(StartupUsers.deleteStartupUser);
+
+router.route('/students')
+  .get(Students.getStudents)
+  .post(Students.createStudent);
+
+router.route('/students/:id')
+  .get(StartupUsers.getStudent)
+  .put(StartupUsers.updateStudent)
+  .delete(StartupUsers.deleteStudent);
 
 export default router;
