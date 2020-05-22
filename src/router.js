@@ -5,6 +5,7 @@ import * as StartupUsers from './controllers/startup_user_controller';
 import * as Students from './controllers/student_controller';
 import * as Users from './controllers/user_controller';
 import * as WorkExperiences from './controllers/work_experience_controller';
+import * as Applications from './controllers/application_controller';
 
 const router = Router();
 
@@ -65,5 +66,14 @@ router.route('/workexperiences/:id')
   .get(WorkExperiences.getWorkExperience)
   .put(WorkExperiences.updateWorkExperience)
   .delete(WorkExperiences.deleteWorkExperience);
+
+router.route('/applications')
+  .get(Applications.getApplication)
+  .post(Applications.createApplication);
+
+router.route('/applications/:id')
+  .get(Applications.getApplication)
+  .put(Applications.updateApplication)
+  .delete(Applications.deleteApplication);
 
 export default router;
