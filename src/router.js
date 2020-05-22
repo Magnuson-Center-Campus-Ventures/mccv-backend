@@ -3,6 +3,7 @@ import * as JobPosts from './controllers/job_post_controller';
 import * as Startups from './controllers/startup_controller';
 import * as StartupUsers from './controllers/startup_user_controller';
 import * as Students from './controllers/student_controller';
+import * as Users from './controllers/user_controller';
 
 const router = Router();
 
@@ -45,5 +46,14 @@ router.route('/students/:id')
   .get(Students.getStudent)
   .put(Students.updateStudent)
   .delete(Students.deleteStudent);
+
+router.route('/users')
+  .get(Users.getUsers)
+  .post(Users.createUser);
+
+router.route('/users/:id')
+  .get(Users.getUser)
+  .put(Users.updateUser)
+  .delete(Users.deleteUser);
 
 export default router;
