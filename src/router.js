@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import * as JobPosts from './controllers/job_post_controller';
+import * as Posts from './controllers/post_controller';
 import * as Startups from './controllers/startup_controller';
 import * as StartupUsers from './controllers/startup_user_controller';
 import * as Students from './controllers/student_controller';
@@ -11,14 +11,14 @@ router.get('/', (req, res) => {
   res.json({ message: 'Welcome to our mcv api!' });
 });
 
-router.route('/jobposts')
-  .get(JobPosts.getPosts)
-  .post(JobPosts.createPost);
+router.route('/posts')
+  .get(Posts.getPosts)
+  .post(Posts.createPost);
 
-router.route('/jobposts/:id')
-  .get(JobPosts.getPost)
-  .put(JobPosts.updatePost)
-  .delete(JobPosts.deletePost);
+router.route('/posts/:id')
+  .get(Posts.getPost)
+  .put(Posts.updatePost)
+  .delete(Posts.deletePost);
 
 router.route('/startups')
   .get(Startups.getStartups)
