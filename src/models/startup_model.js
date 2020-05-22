@@ -5,7 +5,7 @@ const StartupSchema = new Schema({
   name: String,
   industry: String,
   description: String,
-  job_posts: Array,
+  posts: Array,
   status: String,
   location: String,
 }, {

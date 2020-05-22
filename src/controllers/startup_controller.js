@@ -6,7 +6,7 @@ export const createStartup = (req, res) => {
   startup.name = req.body.name;
   startup.industry = req.body.industry;
   startup.description = req.body.description;
-  startup.job_posts = req.body.job_posts;
+  startup.posts = req.body.posts;
   startup.status = req.body.status;
   startup.location = req.body.location;
   startup.save()
