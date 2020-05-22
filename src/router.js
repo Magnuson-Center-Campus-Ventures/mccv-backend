@@ -6,6 +6,7 @@ import * as Students from './controllers/student_controller';
 import * as Users from './controllers/user_controller';
 import * as WorkExperiences from './controllers/work_experience_controller';
 import * as Applications from './controllers/application_controller';
+import * as SubmittedApplications from './controllers/submitted_application_controller';
 
 const router = Router();
 
@@ -59,7 +60,7 @@ router.route('/users/:id')
   .delete(Users.deleteUser);
 
 router.route('/workexperiences')
-  .get(WorkExperiences.getWorkExperience)
+  .get(WorkExperiences.getWorkExperiences)
   .post(WorkExperiences.createWorkExperience);
 
 router.route('/workexperiences/:id')
@@ -68,12 +69,21 @@ router.route('/workexperiences/:id')
   .delete(WorkExperiences.deleteWorkExperience);
 
 router.route('/applications')
-  .get(Applications.getApplication)
+  .get(Applications.getApplications)
   .post(Applications.createApplication);
 
 router.route('/applications/:id')
   .get(Applications.getApplication)
   .put(Applications.updateApplication)
   .delete(Applications.deleteApplication);
+
+router.route('/submittedapplications')
+  .get(SubmittedApplications.getSubmittedApplications)
+  .post(SubmittedApplications.getSubmittedApplication);
+
+router.route('/submittedapplications/:id')
+  .get(SubmittedApplications.getSubmittedApplication)
+  .put(SubmittedApplications.updateSubmittedApplication)
+  .delete(SubmittedApplications.deleteSubmittedApplication);
 
 export default router;
