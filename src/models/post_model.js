@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
-const JobPostSchema = new Schema({
+// For companies' volunteer position postings
+const PostSchema = new Schema({
   startup_id: String,
   title: String,
   description: String,
@@ -24,6 +25,6 @@ const JobPostSchema = new Schema({
   timestamps: true,
 });
 
-const JobPostModel = mongoose.model('JobPost', JobPostSchema);
+const PostModel = mongoose.model('Post', PostSchema);
 
-export default JobPostModel;
+export default PostModel;
