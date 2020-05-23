@@ -8,6 +8,7 @@ const PostSchema = new Schema({
   industries: Array,
   required_skills: Array,
   preferred_skills: Array,
+  responsibilities: Array,
   time_commitment: Number,
   desired_start_date: Date,
   desired_end_date: Date,

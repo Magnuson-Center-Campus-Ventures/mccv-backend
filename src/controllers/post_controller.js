@@ -10,6 +10,7 @@ export const createPost = (req, res) => {
   post.industries = req.body.industries;
   post.required_skills = req.body.required_skills;
   post.preferred_skills = req.body.preferred_skills;
+  post.responsibilities = req.body.responsibilities;
   post.time_commitment = req.body.time_commitment;
   post.desired_start_date = req.body.desired_start_date;
   post.desired_end_date = req.body.desired_end_date;
