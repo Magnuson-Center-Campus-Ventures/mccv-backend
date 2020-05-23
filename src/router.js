@@ -60,7 +60,6 @@ router.route('/users/:id')
   .delete(Users.deleteUser);
 
 router.route('/workexperiences')
-  .get(WorkExperiences.getWorkExperiences)
   .post(WorkExperiences.createWorkExperience);
 
 router.route('/workexperiences/:id')

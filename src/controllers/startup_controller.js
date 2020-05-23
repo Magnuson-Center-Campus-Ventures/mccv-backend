@@ -4,7 +4,7 @@ export const createStartup = (req, res) => {
   const startup = new Startup();
   startup.user_ids = req.body.user_ids;
   startup.name = req.body.name;
-  startup.industry = req.body.industry;
+  startup.industries = req.body.industries;
   startup.description = req.body.description;
   startup.posts = req.body.posts;
   startup.status = req.body.status;

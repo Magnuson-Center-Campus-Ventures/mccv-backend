@@ -7,8 +7,7 @@ export const createPost = (req, res) => {
   post.startup_id = req.body.startup_id;
   post.title = req.body.title;
   post.description = req.body.description;
-  post.pending = req.body.pending;
-  post.industry = req.body.industry;
+  post.industries = req.body.industries;
   post.required_skills = req.body.required_skills;
   post.preferred_skills = req.body.preferred_skills;
   post.time_commitment = req.body.time_commitment;
