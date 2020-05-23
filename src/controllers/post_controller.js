@@ -18,6 +18,7 @@ export const createPost = (req, res) => {
   post.availabile_until = req.body.availabile_until;
   post.status = req.body.status;
   post.applicants = req.body.applicants;
+  post.application_id = req.body.application_id;
   post.students_selected = req.body.students_selected;
   post.location = req.body.location;
   post.remote = req.body.remote;

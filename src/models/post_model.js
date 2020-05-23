@@ -16,6 +16,7 @@ const PostSchema = new Schema({
   available_until: Date,
   status: String,
   applicants: Array,
+  application_id: String,
   students_selected: Array,
   location: String,
   remote: Boolean,
