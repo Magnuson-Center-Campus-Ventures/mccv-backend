@@ -8,7 +8,7 @@ export const createWorkExperience = (req, res) => {
   workExperience.start_date = req.body.start_date;
   workExperience.end_date = req.body.end_date;
   workExperience.currently_working = req.body.currently_working;
-  workExperience.decription = req.body.description;
+  workExperience.description = req.body.description;
   workExperience.save()
     .then((result) => {
       res.json({ message: 'WorkExperience profile created!' });
@@ -18,15 +18,14 @@ export const createWorkExperience = (req, res) => {
     });
 };
 
-// No get all work experiences function because we'll only ever want to get ones for a specific student,
-// rather than all at the same time
-
-export const getWorkExperience = (req, res) => {
-  WorkExperience.findById(req.params.id).then((result) => {
+// Get work experiences with specific ids (will be an array of ids from the student object)
+export const getWorkExperiences = (req, res) => {
+  WorkExperience.find().where('_id').in(req.query.idArray).then((result) => {
     res.json(result);
-  }).catch((error) => {
-    res.status(404).json({ error });
-  });
+  })
+    .catch((error) => {
+      res.status(404).json({ error });
+    });
 };
 
 export const deleteWorkExperience = (req, res) => {
