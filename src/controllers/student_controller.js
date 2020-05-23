@@ -43,6 +43,14 @@ export const getStudent = (req, res) => {
   });
 };
 
+export const getStudentByUserID = (req, res) => {
+  Student.findOne({ user_id: req.params.userID }).then((result) => {
+    res.json(result);
+  }).catch((error) => {
+    res.status(404).json({ error });
+  });
+};
+
 export const deleteStudent = (req, res) => {
   Student.findByIdAndDelete(req.params.id).then((result) => {
     res.json(result);

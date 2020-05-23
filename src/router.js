@@ -49,6 +49,8 @@ router.route('/students/:id')
   .get(Students.getStudent)
   .put(Students.updateStudent)
   .delete(Students.deleteStudent);
+router.route('/profile/:userID')
+  .get(Students.getStudentByUserID);
 
 router.route('/users')
   .get(Users.getUsers)
@@ -61,9 +63,9 @@ router.route('/users/:id')
 
 router.route('/workexperiences')
   .post(WorkExperiences.createWorkExperience);
-
+router.route('/workexperiences')
+  .get(WorkExperiences.getWorkExperiences);
 router.route('/workexperiences/:id')
-  .get(WorkExperiences.getWorkExperience)
   .put(WorkExperiences.updateWorkExperience)
   .delete(WorkExperiences.deleteWorkExperience);
 
