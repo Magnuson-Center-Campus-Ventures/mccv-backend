@@ -2,7 +2,7 @@ import mongoose, { Schema } from 'mongoose';
 
 const ApplicationSchema = new Schema({
   post_id: String,
-  quesions: Object,
+  questions: Object,
 }, {
   toObject: { virtuals: true },
   toJSON: { virtuals: true },
