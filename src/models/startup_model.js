@@ -1,9 +1,9 @@
 import mongoose, { Schema } from 'mongoose';
 
 const StartupSchema = new Schema({
-  user_ids: Array,
+  user_id: String,
   name: String,
-  industry: String,
+  industry: Array,
   description: String,
   posts: Array,
   status: String,
