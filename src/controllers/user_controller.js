@@ -9,7 +9,7 @@ export const createUser = (req, res) => {
   user.startup_id = req.body.startup_id;
   user.save()
     .then((result) => {
-      res.json({ message: 'User profile created!' });
+      res.json(result);
     })
     .catch((error) => {
       res.status(500).json({ error });

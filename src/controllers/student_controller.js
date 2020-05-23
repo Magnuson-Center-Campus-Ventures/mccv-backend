@@ -19,7 +19,7 @@ export const createStudent = ((req, res) => {
 
   student.save()
     .then((result) => {
-      res.json({ message: 'Student profile created!' });
+      res.json(result);
     })
     .catch((error) => {
       res.status(500).json({ error });

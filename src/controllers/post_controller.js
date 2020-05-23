@@ -22,7 +22,7 @@ export const createPost = (req, res) => {
   post.remote = req.body.remote;
   post.save()
     .then((result) => {
-      res.json({ message: 'Volunteer position post created!' });
+      res.json(result);
     })
     .catch((error) => {
       res.status(500).json({ error });
