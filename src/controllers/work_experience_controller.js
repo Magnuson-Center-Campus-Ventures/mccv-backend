@@ -11,7 +11,7 @@ export const createWorkExperience = (req, res) => {
   workExperience.description = req.body.description;
   workExperience.save()
     .then((result) => {
-      res.json({ message: 'WorkExperience profile created!' });
+      res.json(result);
     })
     .catch((error) => {
       res.status(500).json({ error });

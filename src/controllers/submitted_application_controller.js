@@ -8,7 +8,7 @@ export const createSubmittedApplication = (req, res) => {
   submittedApplication.status = req.body.status;
   submittedApplication.save()
     .then((result) => {
-      res.json({ message: 'Submitted Application created!' });
+      res.json(result);
     })
     .catch((error) => {
       res.status(500).json({ error });

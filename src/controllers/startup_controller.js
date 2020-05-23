@@ -11,7 +11,7 @@ export const createStartup = (req, res) => {
   startup.location = req.body.location;
   startup.save()
     .then((result) => {
-      res.json({ message: 'Startup profile created!' });
+      res.json(result);
     })
     .catch((error) => {
       res.status(500).json({ error });

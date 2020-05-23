@@ -6,7 +6,7 @@ export const createApplication = (req, res) => {
   application.questions = req.body.questions;
   application.save()
     .then((result) => {
-      res.json({ message: 'Application created!' });
+      res.json(result);
     })
     .catch((error) => {
       res.status(500).json({ error });
