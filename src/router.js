@@ -7,7 +7,7 @@ import * as Users from './controllers/user_controller';
 import * as WorkExperiences from './controllers/work_experience_controller';
 import * as Applications from './controllers/application_controller';
 import * as SubmittedApplications from './controllers/submitted_application_controller';
-import * as Skills from './controllers/skill_controller.js';
+import * as Skills from './controllers/skill_controller';
 
 const router = Router();
 
@@ -69,7 +69,7 @@ router.route('/workexperiences')
 router.route('/workexperiences')
   .get(WorkExperiences.getWorkExperiences);
 
-  router.route('/workexperiences/:id')
+router.route('/workexperiences/:id')
   .put(WorkExperiences.updateWorkExperience)
   .delete(WorkExperiences.deleteWorkExperience);
 
