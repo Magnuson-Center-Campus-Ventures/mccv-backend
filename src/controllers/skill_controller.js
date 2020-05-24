@@ -1,4 +1,4 @@
-import Skill from '../models/SkillModel';
+import Skill from '../models/skill_model';
 
 export const createSkill = (req, res) => {
   const skill = new Skill();
