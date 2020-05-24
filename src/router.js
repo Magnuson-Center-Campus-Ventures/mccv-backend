@@ -1,7 +1,8 @@
 import { Router } from 'express';
 import * as Posts from './controllers/post_controller';
 import * as Startups from './controllers/startup_controller';
-import * as StartupUsers from './controllers/startup_user_controller';
+// not using startupusers at the moment
+// import * as StartupUsers from './controllers/startup_user_controller';
 import * as Students from './controllers/student_controller';
 import * as Users from './controllers/user_controller';
 import * as WorkExperiences from './controllers/work_experience_controller';
@@ -36,6 +37,7 @@ router.route('/startups/:id')
   .put(requireAuth, Startups.updateStartup)
   .delete(requireAuth, Startups.deleteStartup);
 
+/* // not using startupusers
 router.route('/startupusers')
   .get(requireAuth, StartupUsers.getStartupUsers)
   .post(requireAuth, StartupUsers.createStartupUser);
@@ -44,6 +46,7 @@ router.route('/startupusers/:id')
   .get(requireAuth, StartupUsers.getStartupUser)
   .put(requireAuth, StartupUsers.updateStartupUser)
   .delete(requireAuth, StartupUsers.deleteStartupUser);
+*/
 
 router.route('/students')
   .get(requireAuth, Students.getStudents)
@@ -58,8 +61,7 @@ router.route('/profile/:userID')
   .get(requireAuth, Students.getStudentByUserID);
 
 router.route('/users')
-  .get(requireAuth, Users.getUsers)
-  .post(requireAuth, Users.createUser);
+  .get(requireAuth, Users.getUsers);
 
 router.route('/users/:id')
   .get(requireAuth, Users.getUser)
