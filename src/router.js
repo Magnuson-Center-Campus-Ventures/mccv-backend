@@ -8,6 +8,8 @@ import * as WorkExperiences from './controllers/work_experience_controller';
 import * as Applications from './controllers/application_controller';
 import * as SubmittedApplications from './controllers/submitted_application_controller';
 import * as Skills from './controllers/skill_controller';
+import * as Classes from './controllers/class_controller';
+import * as Industries from './controllers/industry_controller';
 
 const router = Router();
 
@@ -99,5 +101,23 @@ router.route('/skills/:id')
   .get(Skills.getSkill)
   .put(Skills.updateSkill)
   .delete(Skills.deleteSkill);
+
+router.route('/classes')
+  .get(Classes.getClasses)
+  .post(Classes.createClass);
+
+router.route('/classes/:id')
+  .get(Classes.getClass)
+  .put(Classes.updateClass)
+  .delete(Classes.deleteClass);
+
+router.route('/industries')
+  .get(Industries.getIndustries)
+  .post(Industries.createIndustry);
+
+router.route('/industries/:id')
+  .get(Industries.getIndustry)
+  .put(Industries.updateIndustry)
+  .delete(Industries.deleteIndustry);
 
 export default router;
