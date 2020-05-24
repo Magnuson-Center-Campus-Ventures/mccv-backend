@@ -1,13 +1,14 @@
 import StartupUser from '../models/startup_user_model';
 
+// We are not using StartupUsers right now, but keeping in case want to implement in future
 export const createStartupUser = (req, res) => {
-  const startup_user = new StartupUser();
-  startup_user.user_id = req.body.user_id;
-  startup_user.first_name = req.body.first_name;
-  startup_user.last_name = req.body.last_name;
-  startup_user.role = req.body.role;
-  startup_user.startup_id = req.body.startup_id;
-  startup_user.save()
+  const startupUser = new StartupUser();
+  startupUser.user_id = req.body.user_id;
+  startupUser.first_name = req.body.first_name;
+  startupUser.last_name = req.body.last_name;
+  startupUser.role = req.body.role;
+  startupUser.startup_id = req.body.startup_id;
+  startupUser.save()
     .then((result) => {
       res.json({ message: 'Startup user profile created!' });
     })

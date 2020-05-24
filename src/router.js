@@ -10,6 +10,7 @@ import * as SubmittedApplications from './controllers/submitted_application_cont
 import * as Skills from './controllers/skill_controller';
 import * as Classes from './controllers/class_controller';
 import * as Industries from './controllers/industry_controller';
+import { requireAuth, requireSignin } from './services/passport';
 
 const router = Router();
 
@@ -18,106 +19,108 @@ router.get('/', (req, res) => {
 });
 
 router.route('/posts')
-  .get(Posts.getPosts)
-  .post(Posts.createPost);
+  .get(requireAuth, Posts.getPosts)
+  .post(requireAuth, Posts.createPost);
 
 router.route('/posts/:id')
-  .get(Posts.getPost)
-  .put(Posts.updatePost)
-  .delete(Posts.deletePost);
+  .get(requireAuth, Posts.getPost)
+  .put(requireAuth, Posts.updatePost)
+  .delete(requireAuth, Posts.deletePost);
 
 router.route('/startups')
-  .get(Startups.getStartups)
-  .post(Startups.createStartup);
+  .get(requireAuth, Startups.getStartups)
+  .post(requireAuth, Startups.createStartup);
 
 router.route('/startups/:id')
-  .get(Startups.getStartup)
-  .put(Startups.updateStartup)
-  .delete(Startups.deleteStartup);
+  .get(requireAuth, Startups.getStartup)
+  .put(requireAuth, Startups.updateStartup)
+  .delete(requireAuth, Startups.deleteStartup);
 
 router.route('/startupusers')
-  .get(StartupUsers.getStartupUsers)
-  .post(StartupUsers.createStartupUser);
+  .get(requireAuth, StartupUsers.getStartupUsers)
+  .post(requireAuth, StartupUsers.createStartupUser);
 
 router.route('/startupusers/:id')
-  .get(StartupUsers.getStartupUser)
-  .put(StartupUsers.updateStartupUser)
-  .delete(StartupUsers.deleteStartupUser);
+  .get(requireAuth, StartupUsers.getStartupUser)
+  .put(requireAuth, StartupUsers.updateStartupUser)
+  .delete(requireAuth, StartupUsers.deleteStartupUser);
 
 router.route('/students')
-  .get(Students.getStudents)
-  .post(Students.createStudent);
+  .get(requireAuth, Students.getStudents)
+  .post(requireAuth, Students.createStudent);
 
 router.route('/students/:id')
-  .get(Students.getStudent)
-  .put(Students.updateStudent)
-  .delete(Students.deleteStudent);
+  .get(requireAuth, Students.getStudent)
+  .put(requireAuth, Students.updateStudent)
+  .delete(requireAuth, Students.deleteStudent);
 
 router.route('/profile/:userID')
-  .get(Students.getStudentByUserID);
+  .get(requireAuth, Students.getStudentByUserID);
 
 router.route('/users')
-  .get(Users.getUsers)
-  .post(Users.createUser);
+  .get(requireAuth, Users.getUsers)
+  .post(requireAuth, Users.createUser);
 
 router.route('/users/:id')
-  .get(Users.getUser)
-  .put(Users.updateUser)
-  .delete(Users.deleteUser);
+  .get(requireAuth, Users.getUser)
+  .put(requireAuth, Users.updateUser)
+  .delete(requireAuth, Users.deleteUser);
 
 router.route('/workexperiences')
-  .post(WorkExperiences.createWorkExperience);
+  .post(requireAuth, WorkExperiences.createWorkExperience);
 
 router.route('/workexperiences')
-  .get(WorkExperiences.getWorkExperiences);
+  .get(requireAuth, WorkExperiences.getWorkExperiences);
 
 router.route('/workexperiences/:id')
-  .put(WorkExperiences.updateWorkExperience)
-  .delete(WorkExperiences.deleteWorkExperience);
+  .put(requireAuth, WorkExperiences.updateWorkExperience)
+  .delete(requireAuth, WorkExperiences.deleteWorkExperience);
 
 router.route('/applications')
-  .get(Applications.getApplications)
-  .post(Applications.createApplication);
+  .get(requireAuth, Applications.getApplications)
+  .post(requireAuth, Applications.createApplication);
 
 router.route('/applications/:id')
-  .get(Applications.getApplication)
-  .put(Applications.updateApplication)
-  .delete(Applications.deleteApplication);
+  .get(requireAuth, Applications.getApplication)
+  .put(requireAuth, Applications.updateApplication)
+  .delete(requireAuth, Applications.deleteApplication);
 
 router.route('/submittedapplications')
-  .get(SubmittedApplications.getSubmittedApplications)
-  .post(SubmittedApplications.createSubmittedApplication);
+  .get(requireAuth, SubmittedApplications.getSubmittedApplications)
+  .post(requireAuth, SubmittedApplications.createSubmittedApplication);
 
 router.route('/submittedapplications/:id')
-  .get(SubmittedApplications.getSubmittedApplication)
-  .put(SubmittedApplications.updateSubmittedApplication)
-  .delete(SubmittedApplications.deleteSubmittedApplication);
+  .get(requireAuth, SubmittedApplications.getSubmittedApplication)
+  .put(requireAuth, SubmittedApplications.updateSubmittedApplication)
+  .delete(requireAuth, SubmittedApplications.deleteSubmittedApplication);
 
 router.route('/skills')
-  .get(Skills.getSkills)
-  .post(Skills.createSkill);
+  .get(requireAuth, Skills.getSkills)
+  .post(requireAuth, Skills.createSkill);
 
 router.route('/skills/:id')
-  .get(Skills.getSkill)
-  .put(Skills.updateSkill)
-  .delete(Skills.deleteSkill);
+  .get(requireAuth, Skills.getSkill)
+  .put(requireAuth, Skills.updateSkill)
+  .delete(requireAuth, Skills.deleteSkill);
 
 router.route('/classes')
-  .get(Classes.getClasses)
-  .post(Classes.createClass);
+  .get(requireAuth, Classes.getClasses)
+  .post(requireAuth, Classes.createClass);
 
 router.route('/classes/:id')
-  .get(Classes.getClass)
-  .put(Classes.updateClass)
-  .delete(Classes.deleteClass);
+  .get(requireAuth, Classes.getClass)
+  .put(requireAuth, Classes.updateClass)
+  .delete(requireAuth, Classes.deleteClass);
 
 router.route('/industries')
-  .get(Industries.getIndustries)
-  .post(Industries.createIndustry);
+  .get(requireAuth, Industries.getIndustries)
+  .post(requireAuth, Industries.createIndustry);
 
 router.route('/industries/:id')
-  .get(Industries.getIndustry)
-  .put(Industries.updateIndustry)
-  .delete(Industries.deleteIndustry);
+  .get(requireAuth, Industries.getIndustry)
+  .put(requireAuth, Industries.updateIndustry)
+  .delete(requireAuth, Industries.deleteIndustry);
 
+router.post('/signin', requireSignin, Users.signin);
+router.post('/signup', Users.signup);
 export default router;
