@@ -7,6 +7,7 @@ import * as Users from './controllers/user_controller';
 import * as WorkExperiences from './controllers/work_experience_controller';
 import * as Applications from './controllers/application_controller';
 import * as SubmittedApplications from './controllers/submitted_application_controller';
+import * as Skills from './controllers/skill_controller';
 
 const router = Router();
 
@@ -49,6 +50,7 @@ router.route('/students/:id')
   .get(Students.getStudent)
   .put(Students.updateStudent)
   .delete(Students.deleteStudent);
+
 router.route('/profile/:userID')
   .get(Students.getStudentByUserID);
 
@@ -63,8 +65,10 @@ router.route('/users/:id')
 
 router.route('/workexperiences')
   .post(WorkExperiences.createWorkExperience);
+
 router.route('/workexperiences')
   .get(WorkExperiences.getWorkExperiences);
+
 router.route('/workexperiences/:id')
   .put(WorkExperiences.updateWorkExperience)
   .delete(WorkExperiences.deleteWorkExperience);
@@ -80,11 +84,20 @@ router.route('/applications/:id')
 
 router.route('/submittedapplications')
   .get(SubmittedApplications.getSubmittedApplications)
-  .post(SubmittedApplications.getSubmittedApplication);
+  .post(SubmittedApplications.createSubmittedApplication);
 
 router.route('/submittedapplications/:id')
   .get(SubmittedApplications.getSubmittedApplication)
   .put(SubmittedApplications.updateSubmittedApplication)
   .delete(SubmittedApplications.deleteSubmittedApplication);
+
+router.route('/skills')
+  .get(Skills.getSkills)
+  .post(Skills.createSkill);
+
+router.route('/skills/:id')
+  .get(Skills.getSkill)
+  .put(Skills.updateSkill)
+  .delete(Skills.deleteSkill);
 
 export default router;
