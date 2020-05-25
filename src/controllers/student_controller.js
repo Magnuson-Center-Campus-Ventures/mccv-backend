@@ -5,6 +5,7 @@ export const createStudent = ((req, res) => {
   student.user_id = req.body.user_id;
   student.first_name = req.body.first_name;
   student.last_name = req.body.last_name;
+  student.phone_number = req.body.phone_number;
   student.majors = req.body.majors;
   student.minors = req.body.minors;
   student.grad_year = req.body.grad_year;
@@ -35,7 +36,7 @@ export const getStudents = (req, res) => {
     });
 };
 
-export const getStudent = (req, res) => {
+export const getStudentByID = (req, res) => {
   Student.findById(req.params.id).then((result) => {
     res.json(result);
   }).catch((error) => {

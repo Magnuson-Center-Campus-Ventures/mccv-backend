@@ -3,7 +3,6 @@ import Skill from '../models/skill_model';
 export const createSkill = (req, res) => {
   const skill = new Skill();
   skill.name = req.body.name;
-  skill.level = req.body.level;
   skill.save()
     .then((result) => {
       res.json(result);
