@@ -3,6 +3,7 @@ import mongoose, { Schema } from 'mongoose';
 const StartupSchema = new Schema({
   user_id: String,
   name: String,
+  contact_email: String,
   industry: Array,
   description: String,
   posts: Array,

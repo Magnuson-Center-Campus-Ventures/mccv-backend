@@ -53,7 +53,7 @@ router.route('/students')
   .post(requireAuth, Students.createStudent);
 
 router.route('/students/:id')
-  .get(requireAuth, Students.getStudent)
+  .get(requireAuth, Students.getStudentByID)
   .put(requireAuth, Students.updateStudent)
   .delete(requireAuth, Students.deleteStudent);
 
