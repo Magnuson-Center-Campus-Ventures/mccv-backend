@@ -28,6 +28,16 @@ export const getStartups = (req, res) => {
     });
 };
 
+export const getSearchResults = (req, res) => {
+  console.log(req.params.searchterm)
+  Startup.find().then((result) => {
+    res.json(result);
+  })
+    .catch((error) => {
+      res.status(404).json({ error });
+    });
+};
+
 export const getStartup = (req, res) => {
   Startup.findById(req.params.id).then((result) => {
     res.json(result);
