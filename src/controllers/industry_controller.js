@@ -21,6 +21,16 @@ export const getIndustries = (req, res) => {
     });
 };
 
+// Get industries with specific ids (will be an array of ids from the student object)
+export const getCertainIndustries = (req, res) => {
+  Industry.find().where('_id').in(req.params.idArray.split(',')).then((result) => {
+    res.json(result);
+  })
+    .catch((error) => {
+      res.status(404).json({ error });
+    });
+};
+
 export const getIndustry = (req, res) => {
   Industry.findById(req.params.id).then((result) => {
     res.json(result);

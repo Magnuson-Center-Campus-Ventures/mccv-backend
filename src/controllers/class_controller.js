@@ -21,6 +21,16 @@ export const getClasses = (req, res) => {
     });
 };
 
+// Get classes with specific ids (will be an array of ids from the student object)
+export const getCertainClasses = (req, res) => {
+  Class.find().where('_id').in(req.params.idArray.split(',')).then((result) => {
+    res.json(result);
+  })
+    .catch((error) => {
+      res.status(404).json({ error });
+    });
+};
+
 export const getClass = (req, res) => {
   Class.findById(req.params.id).then((result) => {
     res.json(result);
