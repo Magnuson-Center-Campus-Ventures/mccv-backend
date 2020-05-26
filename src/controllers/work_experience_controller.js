@@ -20,7 +20,7 @@ export const createWorkExperience = (req, res) => {
 
 // Get work experiences with specific ids (will be an array of ids from the student object)
 export const getWorkExperiences = (req, res) => {
-  WorkExperience.find().where('_id').in(req.query.idArray).then((result) => {
+  WorkExperience.find().where('_id').in(req.params.idArray.split(',')).then((result) => {
     res.json(result);
   })
     .catch((error) => {

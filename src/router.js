@@ -71,7 +71,7 @@ router.route('/users/:id')
 router.route('/workexperiences')
   .post(requireAuth, WorkExperiences.createWorkExperience);
 
-router.route('/workexperiences')
+router.route('/workexperiences/:idArray')
   .get(requireAuth, WorkExperiences.getWorkExperiences);
 
 router.route('/workexperiences/:id')
@@ -100,6 +100,9 @@ router.route('/skills')
   .get(requireAuth, Skills.getSkills)
   .post(requireAuth, Skills.createSkill);
 
+router.route('/skills/:idArray')
+  .get(requireAuth, Skills.getCertainSkills);
+
 router.route('/skills/:id')
   .get(requireAuth, Skills.getSkill)
   .put(requireAuth, Skills.updateSkill)
@@ -109,6 +112,9 @@ router.route('/classes')
   .get(requireAuth, Classes.getClasses)
   .post(requireAuth, Classes.createClass);
 
+router.route('/classes/:idArray')
+  .get(requireAuth, Classes.getCertainClasses);
+
 router.route('/classes/:id')
   .get(requireAuth, Classes.getClass)
   .put(requireAuth, Classes.updateClass)
@@ -117,6 +123,9 @@ router.route('/classes/:id')
 router.route('/industries')
   .get(requireAuth, Industries.getIndustries)
   .post(requireAuth, Industries.createIndustry);
+
+router.route('/industries/:idArray')
+  .get(requireAuth, Industries.getCertainIndustries);
 
 router.route('/industries/:id')
   .get(requireAuth, Industries.getIndustry)
