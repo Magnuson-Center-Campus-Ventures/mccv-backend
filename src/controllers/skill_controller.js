@@ -21,6 +21,16 @@ export const getSkills = (req, res) => {
     });
 };
 
+// Get skills with specific ids (will be an array of ids from the student object)
+export const getCertainSkills = (req, res) => {
+  Skill.find().where('_id').in(req.params.idArray.split(',')).then((result) => {
+    res.json(result);
+  })
+    .catch((error) => {
+      res.status(404).json({ error });
+    });
+};
+
 export const getSkill = (req, res) => {
   Skill.findById(req.params.id).then((result) => {
     res.json(result);
