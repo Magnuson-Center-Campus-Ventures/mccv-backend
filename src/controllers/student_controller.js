@@ -18,13 +18,12 @@ export const createStudent = ((req, res) => {
   student.desired_end_date = req.body.desired_end_date;
   student.time_commitment = req.body.time_commitment;
 
-  student.save()
-    .then((result) => {
-      res.json(result);
-    })
-    .catch((error) => {
-      res.status(500).json({ error });
-    });
+  student.save().then((result) => {
+    res.json(result);
+    // res.send({ student: result, id: req.params.id });
+  }).catch((error) => {
+    res.status(500).json({ error });
+  });
 });
 
 export const getStudents = (req, res) => {

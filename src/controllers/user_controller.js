@@ -29,7 +29,7 @@ export const signup = (req, res, next) => {
         user.student_profile_id = req.body.student_profile_id;
         user.startup_id = req.body.startup_id;
         user.save().then((result) => {
-          res.send({ token: tokenForUser(result) });
+          res.send({ token: tokenForUser(result), id: req.user.id });
         }).catch((error) => {
           res.status(500).json({ error });
         });
