@@ -29,7 +29,7 @@ export const getStartups = (req, res) => {
 };
 
 export const getSearchResults = (req, res) => {
-  console.log(req.params.searchterm)
+  // console.log(req.params.searchterm)
   Startup.find({ '$text': {'$search': req.params.searchterm}}).then((result) => {
     res.json(result);
   })
