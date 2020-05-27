@@ -23,6 +23,9 @@ router.route('/posts')
   .get(requireAuth, Posts.getPosts)
   .post(requireAuth, Posts.createPost);
 
+router.route('/posts/:searchterm')
+  .get(requireAuth, Posts.getSearchResults);
+
 router.route('/posts/:id')
   .get(requireAuth, Posts.getPost)
   .put(requireAuth, Posts.updatePost)
