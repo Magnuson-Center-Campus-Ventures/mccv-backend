@@ -33,7 +33,7 @@ router.route('/startups')
   .post(requireAuth, Startups.createStartup);
 
 router.route('/startups/:searchterm')
-  .get(requireAuth, Startups.getSearchResults)
+  .get(requireAuth, Startups.getSearchResults);
 
 router.route('/startups/:id')
   .get(requireAuth, Startups.getStartup)
