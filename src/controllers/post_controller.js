@@ -40,6 +40,15 @@ export const getPosts = (req, res) => {
     });
 };
 
+export const getSearchResults = (req, res) => {
+  Post.find({ '$text': {'$search': req.params.searchterm}}).then((result) => {
+    res.json(result);
+  })
+    .catch((error) => {
+      res.status(404).json({ error });
+    });
+};
+
 export const getPost = (req, res) => {
   Post.findById(req.params.id).then((result) => {
     res.json(result);
