@@ -30,7 +30,7 @@ export const getStartups = (req, res) => {
 
 export const getSearchResults = (req, res) => {
   console.log(req.params.searchterm)
-  Startup.find().then((result) => {
+  Startup.find({ '$text': {'$search': req.params.searchterm}}).then((result) => {
     res.json(result);
   })
     .catch((error) => {
