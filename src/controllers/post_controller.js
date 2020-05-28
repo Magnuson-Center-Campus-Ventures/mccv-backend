@@ -41,7 +41,7 @@ export const getPosts = (req, res) => {
 };
 
 export const getSearchResults = (req, res) => {
-  Post.find({ '$text': {'$search': req.params.searchterm}}).then((result) => {
+  Post.find({ $text: { $search: req.params.searchterm } }).then((result) => {
     res.json(result);
   })
     .catch((error) => {
