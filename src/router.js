@@ -78,9 +78,6 @@ router.route('/users/:id')
   .put(requireAuth, Users.updateUser)
   .delete(requireAuth, Users.deleteUser);
 
-router.route('/users/:email')
-  .get(requireAuth, Users.getUserByEmail);
-
 // work experiences routes
 router.route('/workexperiences')
   .post(requireAuth, WorkExperiences.createWorkExperience);
@@ -102,6 +99,7 @@ router.route('/applications/:id')
   .put(requireAuth, Applications.updateApplication)
   .delete(requireAuth, Applications.deleteApplication);
 
+// submitted applications routes
 router.route('/submittedapplications')
   .get(requireAuth, SubmittedApplications.getSubmittedApplications)
   .post(requireAuth, SubmittedApplications.createSubmittedApplication);

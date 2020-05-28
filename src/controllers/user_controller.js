@@ -42,20 +42,6 @@ export const signup = (req, res) => {
     });
 };
 
-// return userID by email
-export const getUserByEmail = (req, res) => {
-  const { email } = req.body;
-  User.findOne({ email }).then((foundUser) => {
-    if (foundUser) { // if the user exists, then return error
-      res.json(foundUser);
-    } else { // if user doesn't exist, then create user
-      res.status(422).send('Could not find user with that email');
-    }
-  }).catch((error) => {
-    res.status(500).json({ error });
-  });
-};
-
 // encodes a new token for a user object
 function tokenForUser(user) {
   const timestamp = new Date().getTime();
