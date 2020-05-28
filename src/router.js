@@ -11,7 +11,6 @@ import * as SubmittedApplications from './controllers/submitted_application_cont
 import * as Skills from './controllers/skill_controller';
 import * as Classes from './controllers/class_controller';
 import * as Industries from './controllers/industry_controller';
-import * as OtherExperiences from './controllers/other_experience_controller';
 import { requireAuth, requireSignin } from './services/passport';
 
 const router = Router();
@@ -138,16 +137,6 @@ router.route('/industries/:id')
   .get(requireAuth, Industries.getIndustry)
   .put(requireAuth, Industries.updateIndustry)
   .delete(requireAuth, Industries.deleteIndustry);
-
-router.route('/otherexperiences')
-  .post(requireAuth, OtherExperiences.createOtherExperience);
-
-router.route('/otherexperiences/:idArray')
-  .get(requireAuth, OtherExperiences.getOtherExperiences);
-
-router.route('/otherexperiences/:id')
-  .put(requireAuth, OtherExperiences.updateOtherExperience)
-  .delete(requireAuth, OtherExperiences.deleteOtherExperience);
 
 router.post('/signin', requireSignin, Users.signin);
 router.post('/signup', Users.signup);
