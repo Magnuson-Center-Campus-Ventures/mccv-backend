@@ -9,7 +9,7 @@ const StudentSchema = new Schema({
   minors: Array,
   grad_year: String,
   interested_industries: Array,
-  skills: Map,
+  skills: Array,
   work_exp: Array,
   relevant_classes: Array,
   other_exp: Array,
