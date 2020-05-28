@@ -19,6 +19,7 @@ router.get('/', (req, res) => {
   res.json({ message: 'Welcome to our mcv api!' });
 });
 
+// posts routes
 router.route('/posts')
   .get(requireAuth, Posts.getPosts)
   .post(requireAuth, Posts.createPost);
@@ -31,6 +32,7 @@ router.route('/posts/:id')
   .put(requireAuth, Posts.updatePost)
   .delete(requireAuth, Posts.deletePost);
 
+// startup routes
 router.route('/startups')
   .get(requireAuth, Startups.getStartups)
   .post(requireAuth, Startups.createStartup);
@@ -54,6 +56,7 @@ router.route('/startupusers/:id')
   .delete(requireAuth, StartupUsers.deleteStartupUser);
 */
 
+// student routes
 router.route('/students')
   .get(requireAuth, Students.getStudents)
   .post(requireAuth, Students.createStudent);
@@ -66,6 +69,7 @@ router.route('/students/:id')
 router.route('/profile/:userID')
   .get(requireAuth, Students.getStudentByUserID);
 
+// user routes
 router.route('/users')
   .get(requireAuth, Users.getUsers);
 
@@ -74,6 +78,10 @@ router.route('/users/:id')
   .put(requireAuth, Users.updateUser)
   .delete(requireAuth, Users.deleteUser);
 
+router.route('/users/:email')
+  .get(requireAuth, Users.getUserByEmail);
+
+// work experiences routes
 router.route('/workexperiences')
   .post(requireAuth, WorkExperiences.createWorkExperience);
 
@@ -84,6 +92,7 @@ router.route('/workexperiences/:id')
   .put(requireAuth, WorkExperiences.updateWorkExperience)
   .delete(requireAuth, WorkExperiences.deleteWorkExperience);
 
+// applications routes
 router.route('/applications')
   .get(requireAuth, Applications.getApplications)
   .post(requireAuth, Applications.createApplication);
@@ -102,6 +111,7 @@ router.route('/submittedapplications/:id')
   .put(requireAuth, SubmittedApplications.updateSubmittedApplication)
   .delete(requireAuth, SubmittedApplications.deleteSubmittedApplication);
 
+// skills routes
 router.route('/skills')
   .get(requireAuth, Skills.getSkills)
   .post(requireAuth, Skills.createSkill);
@@ -114,6 +124,7 @@ router.route('/skills/:id')
   .put(requireAuth, Skills.updateSkill)
   .delete(requireAuth, Skills.deleteSkill);
 
+// classes routes
 router.route('/classes')
   .get(requireAuth, Classes.getClasses)
   .post(requireAuth, Classes.createClass);
@@ -126,6 +137,7 @@ router.route('/classes/:id')
   .put(requireAuth, Classes.updateClass)
   .delete(requireAuth, Classes.deleteClass);
 
+// industries routes
 router.route('/industries')
   .get(requireAuth, Industries.getIndustries)
   .post(requireAuth, Industries.createIndustry);
@@ -138,6 +150,7 @@ router.route('/industries/:id')
   .put(requireAuth, Industries.updateIndustry)
   .delete(requireAuth, Industries.deleteIndustry);
 
+// auth routes
 router.post('/signin', requireSignin, Users.signin);
 router.post('/signup', Users.signup);
 export default router;

@@ -5,16 +5,16 @@ import User from '../models/user_model';
 dotenv.config({ silent: true });
 
 // signin, signup based on lab5
-export const signin = (req, res, next) => {
+export const signin = (req, res) => {
   res.send({ token: tokenForUser(req.user), id: req.user.id });
 };
 
-export const signup = (req, res, next) => {
+export const signup = (req, res) => {
   const { email } = req.body;
   const { password } = req.body;
 
   if (!email || !password) {
-    return res.status(422).send('You must provide email and password');
+    res.status(422).send('You must provide email and password');
   }
 
   User.findOne({ email })
@@ -23,13 +23,15 @@ export const signup = (req, res, next) => {
         res.status(422).send('User with this email already exists');
       } else { // if user doesn't exist, then create user
         const user = new User();
+        user._id = req.body._id;
         user.email = req.body.email;
         user.password = req.body.password;
         user.role = req.body.role;
         user.student_profile_id = req.body.student_profile_id;
         user.startup_id = req.body.startup_id;
         user.save().then((result) => {
-          res.send({ token: tokenForUser(result), id: req.user.id });
+          res.send({ token: tokenForUser(result), id: user._id });
+          // res.send({ token: tokenForUser(result) });
         }).catch((error) => {
           res.status(500).json({ error });
         });
@@ -38,8 +40,20 @@ export const signup = (req, res, next) => {
     .catch((error) => {
       res.status(500).json({ error });
     });
+};
 
-  return null;
+// return userID by email
+export const getUserByEmail = (req, res) => {
+  const { email } = req.body;
+  User.findOne({ email }).then((foundUser) => {
+    if (foundUser) { // if the user exists, then return error
+      res.json(foundUser);
+    } else { // if user doesn't exist, then create user
+      res.status(422).send('Could not find user with that email');
+    }
+  }).catch((error) => {
+    res.status(500).json({ error });
+  });
 };
 
 // encodes a new token for a user object
