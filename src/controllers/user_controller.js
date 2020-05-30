@@ -1,20 +1,21 @@
 import dotenv from 'dotenv';
 import jwt from 'jwt-simple';
 import User from '../models/user_model';
+import Student from '../models/student_model';
 
 dotenv.config({ silent: true });
 
 // signin, signup based on lab5
-export const signin = (req, res, next) => {
+export const signin = (req, res) => {
   res.send({ token: tokenForUser(req.user), id: req.user.id });
 };
 
-export const signup = (req, res, next) => {
+export const signup = (req, res) => {
   const { email } = req.body;
   const { password } = req.body;
 
   if (!email || !password) {
-    return res.status(422).send('You must provide email and password');
+    res.status(422).send('You must provide email and password');
   }
 
   User.findOne({ email })
@@ -28,18 +29,33 @@ export const signup = (req, res, next) => {
         user.role = req.body.role;
         user.student_profile_id = req.body.student_profile_id;
         user.startup_id = req.body.startup_id;
-        user.save().then((result) => {
-          res.send({ token: tokenForUser(result) });
-        }).catch((error) => {
-          res.status(500).json({ error });
-        });
+        if (user.role === 'student') {
+          const student = new Student();
+          user.save().then((result) => {
+            res.send({ token: tokenForUser(result), id: user._id });
+          }).then((result2) => { // if saved user, save a student with user_id prefilled
+            student.user_id = user._id;
+            student.save().then((result3) => {
+              // if saved student, update previously created user with student_profile_od
+              user.student_profile_id = student._id;
+              User.findByIdAndUpdate(user._id, user, { new: true }).then((result4) => {
+                console.log(result4);
+              }).catch((error) => {
+                res.status(500).json({ error });
+              });
+            }).catch((error) => {
+              res.status(500).json({ error });
+            });
+          }).catch((error) => {
+            res.status(500).json({ error });
+          });
+        } else if (user.role === 'startup') {
+          console.log('startup');
+        }
       }
-    })
-    .catch((error) => {
+    }).catch((error) => {
       res.status(500).json({ error });
     });
-
-  return null;
 };
 
 // encodes a new token for a user object
