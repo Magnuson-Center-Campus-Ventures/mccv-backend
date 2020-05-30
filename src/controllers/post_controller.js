@@ -1,6 +1,7 @@
 // For companies' volunteer position postings
 
 import Post from '../models/post_model';
+import Startup from '../models/startup_model';
 
 export const createPost = (req, res) => {
   const post = new Post();

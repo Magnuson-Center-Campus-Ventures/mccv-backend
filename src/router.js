@@ -24,7 +24,7 @@ router.route('/posts')
   .get(requireAuth, Posts.getPosts)
   .post(requireAuth, Posts.createPost);
 
-router.route('/posts/:searchterm')
+router.route('/posts-search/:searchterm')
   .get(requireAuth, Posts.getSearchResults);
 
 router.route('/posts/:id')
@@ -36,7 +36,7 @@ router.route('/startups')
   .get(requireAuth, Startups.getStartups)
   .post(requireAuth, Startups.createStartup);
 
-router.route('/startups/:searchterm')
+router.route('/startups-search/:searchterm')
   .get(requireAuth, Startups.getSearchResults);
 
 router.route('/startups/:id')
