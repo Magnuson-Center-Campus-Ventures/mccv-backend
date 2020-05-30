@@ -1,4 +1,5 @@
 import Student from '../models/student_model';
+import User from '../models/user_model';
 
 export const createStudent = ((req, res) => {
   const student = new Student();
@@ -18,13 +19,15 @@ export const createStudent = ((req, res) => {
   student.desired_end_date = req.body.desired_end_date;
   student.time_commitment = req.body.time_commitment;
 
-  student.save()
-    .then((result) => {
-      res.json(result);
-    })
-    .catch((error) => {
-      res.status(500).json({ error });
-    });
+  student.save().then((result) => {
+    // update user to have corresponding student_profile_id
+    if (student.user_id) {
+      User.updateUser(student.user_id, { student_profile_id: student.user_id });
+    }
+    res.json(result);
+  }).catch((error) => {
+    res.status(500).json({ error });
+  });
 });
 
 export const getStudents = (req, res) => {
