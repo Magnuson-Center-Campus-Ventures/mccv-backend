@@ -7,9 +7,11 @@ export const createStartup = (req, res) => {
   startup.contact_email = req.body.contact_email;
   startup.industries = req.body.industries;
   startup.description = req.body.description;
+  startup.video = req.body.video;
   startup.posts = req.body.posts;
   startup.status = req.body.status;
-  startup.location = req.body.location;
+  startup.city = req.body.city;
+  startup.state = req.body.state;
   startup.save()
     .then((result) => {
       res.json(result);
@@ -30,7 +32,7 @@ export const getStartups = (req, res) => {
 
 export const getSearchResults = (req, res) => {
   // console.log(req.params.searchterm)
-  Startup.find({ '$text': {'$search': req.params.searchterm}}).then((result) => {
+  Startup.find({ $text: { $search: req.params.searchterm } }).then((result) => {
     res.json(result);
   })
     .catch((error) => {

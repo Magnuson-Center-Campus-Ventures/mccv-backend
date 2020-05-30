@@ -5,6 +5,7 @@ export const createStudent = ((req, res) => {
   student.user_id = req.body.user_id;
   student.first_name = req.body.first_name;
   student.last_name = req.body.last_name;
+  student.gender = req.body.gender;
   student.phone_number = req.body.phone_number;
   student.majors = req.body.majors;
   student.minors = req.body.minors;
