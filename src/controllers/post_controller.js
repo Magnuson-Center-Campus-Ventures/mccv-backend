@@ -32,7 +32,7 @@ export const createPost = (req, res) => {
 };
 
 export const getPosts = (req, res) => {
-  Post.find().then((result) => {
+  Post.find().populate('startup_id').then((result) => {
     res.json(result);
   })
     .catch((error) => {
@@ -50,7 +50,7 @@ export const getSearchResults = (req, res) => {
 };
 
 export const getPost = (req, res) => {
-  Post.findById(req.params.id).then((result) => {
+  Post.findById(req.params.id).populate('startup_id').then((result) => {
     res.json(result);
   }).catch((error) => {
     res.status(404).json({ error });

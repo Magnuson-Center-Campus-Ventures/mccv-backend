@@ -31,7 +31,7 @@ export const createStudent = ((req, res) => {
 });
 
 export const getStudents = (req, res) => {
-  Student.find().then((result) => {
+  Student.find().populate('relevant_classes').populate('interested_industries').populate('skills').then((result) => {
     res.json(result);
   })
     .catch((error) => {
@@ -40,7 +40,7 @@ export const getStudents = (req, res) => {
 };
 
 export const getStudentByID = (req, res) => {
-  Student.findById(req.params.id).then((result) => {
+  Student.findById(req.params.id).populate('relevant_classes').populate('interested_industries').populate('skills').then((result) => {
     res.json(result);
   }).catch((error) => {
     res.status(404).json({ error });
@@ -48,7 +48,7 @@ export const getStudentByID = (req, res) => {
 };
 
 export const getStudentByUserID = (req, res) => {
-  Student.findOne({ user_id: req.params.userID }).then((result) => {
+  Student.findOne({ user_id: req.params.userID }).populate('relevant_classes').populate('interested_industries').populate('skills').then((result) => {
     res.json(result);
   }).catch((error) => {
     res.status(404).json({ error });

@@ -2,7 +2,7 @@ import mongoose, { Schema } from 'mongoose';
 
 // For companies' volunteer position postings
 const PostSchema = new Schema({
-  startup_id: String,
+  startup_id: { type: Schema.Types.ObjectId, ref: 'Startup' },
   title: String,
   description: String,
   industries: Array,

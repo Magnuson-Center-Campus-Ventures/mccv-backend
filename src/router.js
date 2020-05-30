@@ -58,7 +58,7 @@ router.route('/startupusers/:id')
 */
 
 // student routes
-router.route('/students')
+router.route("/students")
   .get(requireAuth, Students.getStudents)
   .post(requireAuth, Students.createStudent);
 
