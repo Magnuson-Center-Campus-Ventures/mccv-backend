@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import jwt from 'jwt-simple';
 import User from '../models/user_model';
 import Student from '../models/student_model';
+import Startup from '../models/startup_model';
 
 dotenv.config({ silent: true });
 
@@ -22,14 +23,17 @@ export const signup = (req, res) => {
     .then((foundUser) => {
       if (foundUser) { // if the user exists, then return error
         res.status(422).send('User with this email already exists');
-      } else { // if user doesn't exist, then create user
+      } else {
+        // if user doesn't exist, then create user
         const user = new User();
         user.email = req.body.email;
         user.password = req.body.password;
         user.role = req.body.role;
         user.student_profile_id = req.body.student_profile_id;
         user.startup_id = req.body.startup_id;
-        if (user.role === 'student') {
+
+        // depending on role, create appropriate profiles
+        if (user.role === 'student') { // if user role is student, save user
           const student = new Student();
           user.save().then((result) => {
             res.send({ token: tokenForUser(result), id: user._id });
@@ -39,18 +43,37 @@ export const signup = (req, res) => {
               // if saved student, update previously created user with student_profile_od
               user.student_profile_id = student._id;
               User.findByIdAndUpdate(user._id, user, { new: true }).then((result4) => {
-                console.log(result4);
-              }).catch((error) => {
+                console.log('updated user with role student');
+              }).catch((error) => { // error updating user
                 res.status(500).json({ error });
               });
-            }).catch((error) => {
+            }).catch((error) => { // error saving student
               res.status(500).json({ error });
             });
-          }).catch((error) => {
+          }).catch((error) => { // error saving user
             res.status(500).json({ error });
           });
-        } else if (user.role === 'startup') {
-          console.log('startup');
+        } else if (user.role === 'startup') { // if user role is startup, save user
+          const startup = new Startup();
+          user.save().then((result) => {
+            res.send({ token: tokenForUser(result), id: user._id });
+          }).then((result2) => { // if saved user, save a startup with user_id and status prefilled
+            startup.user_id = user._id;
+            startup.status = 'pending';
+            startup.save().then((result3) => {
+              // if saved startup, update previously created user with startup_id
+              user.startup_id = startup._id;
+              User.findByIdAndUpdate(user._id, user, { new: true }).then((result4) => {
+                console.log('updated user with role startup');
+              }).catch((error) => { // error updating user
+                res.status(500).json({ error });
+              });
+            }).catch((error) => { // error saving student
+              res.status(500).json({ error });
+            });
+          }).catch((error) => { // error saving user
+            res.status(500).json({ error });
+          });
         }
       }
     }).catch((error) => {
