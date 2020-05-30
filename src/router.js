@@ -23,20 +23,24 @@ router.get('/', (req, res) => {
 // posts routes
 router.route('/posts')
   .get(requireAuth, Posts.getPosts)
-  .post(requireAuth, Posts.createPost);
+  .post(Posts.createPost);
 
 router.route('/posts-search/:searchterm')
   .get(requireAuth, Posts.getSearchResults);
+router.route('/posts-filter-industries/:industryNames')
+  .get(requireAuth, Posts.getFilteredIndustries);
+router.route('/posts-filter-skills/:skillNames')
+  .get(requireAuth, Posts.getFilteredSkills);
 
 router.route('/posts/:id')
   .get(requireAuth, Posts.getPost)
-  .put(requireAuth, Posts.updatePost)
+  .put(Posts.updatePost)
   .delete(requireAuth, Posts.deletePost);
 
 // startup routes
 router.route('/startups')
   .get(requireAuth, Startups.getStartups)
-  .post(requireAuth, Startups.createStartup);
+  .post(Startups.createStartup);
 
 router.route('/startups-search/:searchterm')
   .get(requireAuth, Startups.getSearchResults);

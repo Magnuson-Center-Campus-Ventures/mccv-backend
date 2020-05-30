@@ -49,6 +49,44 @@ export const getSearchResults = (req, res) => {
     });
 };
 
+export const getFilteredIndustries = (req, res) => {
+  // Get the IDs of posts whose industry arrays have elements in common with the array of industries passed in
+  Post.aggregate([{ $unwind: '$industries' },
+    { $match: { industries: { $in: req.params.industryNames.split(',') } } },
+    { $group: { _id: '$_id' } }])
+    .then((result) => {
+      // Then find the posts associated with these IDs
+      Post.find().where('_id').in(result.map((obj) => { return obj._id; })).then((result2) => {
+        res.json(result2);
+      })
+        .catch((error) => {
+          res.status(404).json({ error });
+        });
+    })
+    .catch((error) => {
+      res.status(404).json({ error });
+    });
+};
+
+export const getFilteredSkills = (req, res) => {
+  // Get the IDs of posts whose skill arrays have elements in common with the array of skills passed in
+  Post.aggregate([{ $unwind: '$required_skills' },
+    { $match: { required_skills: { $in: req.params.skillNames.split(',') } } },
+    { $group: { _id: '$_id' } }])
+    .then((result) => {
+      // Then find the posts associated with these IDs
+      Post.find().where('_id').in(result.map((obj) => { return obj._id; })).then((result2) => {
+        res.json(result2);
+      })
+        .catch((error) => {
+          res.status(404).json({ error });
+        });
+    })
+    .catch((error) => {
+      res.status(404).json({ error });
+    });
+};
+
 export const getPost = (req, res) => {
   Post.findById(req.params.id).then((result) => {
     res.json(result);
