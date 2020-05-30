@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import jwt from 'jwt-simple';
 import User from '../models/user_model';
-import Student from '../models/student_model';
+// import Student from '../models/student_model';
 
 dotenv.config({ silent: true });
 
@@ -24,18 +24,19 @@ export const signup = (req, res) => {
         res.status(422).send('User with this email already exists');
       } else { // if user doesn't exist, then create user
         const user = new User();
-        // user._id = req.body._id;
         user.email = req.body.email;
         user.password = req.body.password;
         user.role = req.body.role;
         user.student_profile_id = req.body.student_profile_id;
         user.startup_id = req.body.startup_id;
         user.save().then((result) => {
+          /*
           if (user.role === 'student') {
             Student.createStudent({ user_id: user._id });
           } else if (user.role === 'startup') {
             // create startup
           }
+          */
           res.send({ token: tokenForUser(result), id: user._id });
         }).catch((error) => {
           res.status(500).json({ error });
