@@ -25,8 +25,9 @@ router.route('/posts')
   .get(requireAuth, Posts.getPosts)
   .post(requireAuth, Posts.createPost);
 
-router.route('/posts-search/:searchterm')
-  .get(requireAuth, Posts.getSearchResults);
+// no longer using, moved post search functionality entirely to front-end implementation 
+// router.route('/posts-search/:searchterm')
+//   .get(requireAuth, Posts.getSearchResults);
 
 router.route('/posts/:id')
   .get(requireAuth, Posts.getPost)

@@ -40,14 +40,15 @@ export const getPosts = (req, res) => {
     });
 };
 
-export const getSearchResults = (req, res) => {
-  Post.find({ $text: { $search: req.params.searchterm } }).then((result) => {
-    res.json(result);
-  })
-    .catch((error) => {
-      res.status(404).json({ error });
-    });
-};
+// no longer using because moved post search functionality to front-end
+// export const getSearchResults = (req, res) => {
+//   Post.find({ $text: { $search: req.params.searchterm } }).then((result) => {
+//     res.json(result);
+//   })
+//     .catch((error) => {
+//       res.status(404).json({ error });
+//     });
+// };
 
 export const getPost = (req, res) => {
   Post.findById(req.params.id).populate('startup_id').then((result) => {
