@@ -4,6 +4,7 @@ const StudentSchema = new Schema({
   user_id: String,
   first_name: String,
   last_name: String,
+  gender: String,
   phone_number: String,
   majors: Array,
   minors: Array,

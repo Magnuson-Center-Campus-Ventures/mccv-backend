@@ -6,9 +6,11 @@ const StartupSchema = new Schema({
   contact_email: String,
   industry: Array,
   description: String,
+  video: String,
   posts: Array,
   status: String,
-  location: String,
+  city: String,
+  state: String,
 }, {
   toObject: { virtuals: true },
   toJSON: { virtuals: true },

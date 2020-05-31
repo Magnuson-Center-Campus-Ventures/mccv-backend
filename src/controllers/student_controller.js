@@ -6,6 +6,7 @@ export const createStudent = ((req, res) => {
   student.user_id = req.body.user_id;
   student.first_name = req.body.first_name;
   student.last_name = req.body.last_name;
+  student.gender = req.body.gender;
   student.phone_number = req.body.phone_number;
   student.majors = req.body.majors;
   student.minors = req.body.minors;
@@ -31,28 +32,33 @@ export const createStudent = ((req, res) => {
 });
 
 export const getStudents = (req, res) => {
-  Student.find().populate('relevant_classes').populate('interested_industries').populate('skills').then((result) => {
-    res.json(result);
-  })
+  Student.find().populate('relevant_classes').populate('interested_industries').populate('skills')
+    .then((result) => {
+      res.json(result);
+    })
     .catch((error) => {
       res.status(404).json({ error });
     });
 };
 
 export const getStudentByID = (req, res) => {
-  Student.findById(req.params.id).populate('relevant_classes').populate('interested_industries').populate('skills').then((result) => {
-    res.json(result);
-  }).catch((error) => {
-    res.status(404).json({ error });
-  });
+  Student.findById(req.params.id).populate('relevant_classes').populate('interested_industries').populate('skills')
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((error) => {
+      res.status(404).json({ error });
+    });
 };
 
 export const getStudentByUserID = (req, res) => {
-  Student.findOne({ user_id: req.params.userID }).populate('relevant_classes').populate('interested_industries').populate('skills').then((result) => {
-    res.json(result);
-  }).catch((error) => {
-    res.status(404).json({ error });
-  });
+  Student.findOne({ user_id: req.params.userID }).populate('relevant_classes').populate('interested_industries').populate('skills')
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((error) => {
+      res.status(404).json({ error });
+    });
 };
 
 export const deleteStudent = (req, res) => {
