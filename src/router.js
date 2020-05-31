@@ -25,7 +25,7 @@ router.route('/posts')
   .get(requireAuth, Posts.getPosts)
   .post(requireAuth, Posts.createPost);
 
-// no longer using, moved post search functionality entirely to front-end implementation 
+// no longer using, moved post search functionality entirely to front-end implementation
 // router.route('/posts-search/:searchterm')
 //   .get(requireAuth, Posts.getSearchResults);
 
@@ -59,7 +59,7 @@ router.route('/startupusers/:id')
 */
 
 // student routes
-router.route("/students")
+router.route('/students')
   .get(requireAuth, Students.getStudents)
   .post(requireAuth, Students.createStudent);
 
