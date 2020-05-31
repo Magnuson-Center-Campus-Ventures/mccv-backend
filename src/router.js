@@ -27,10 +27,13 @@ router.route('/posts')
 
 router.route('/posts-search/:searchterm')
   .get(requireAuth, Posts.getSearchResults);
-router.route('/posts-filter-industries/:industryNames')
-  .get(requireAuth, Posts.getFilteredIndustries);
-router.route('/posts-filter-skills/:skillNames')
-  .get(requireAuth, Posts.getFilteredSkills);
+router.route('/posts-filter/:industryNames/:skillNames')
+  .get(requireAuth, Posts.getFilteredPosts);
+
+// router.route('/posts-filter-industries/:industryNames')
+//   .get(requireAuth, Posts.getFilteredIndustries);
+// router.route('/posts-filter-skills/:skillNames')
+//   .get(requireAuth, Posts.getFilteredSkills);
 
 router.route('/posts/:id')
   .get(requireAuth, Posts.getPost)
