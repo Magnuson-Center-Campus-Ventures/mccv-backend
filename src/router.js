@@ -25,15 +25,12 @@ router.route('/posts')
   .get(requireAuth, Posts.getPosts)
   .post(Posts.createPost);
 
-router.route('/posts-search/:searchterm')
-  .get(requireAuth, Posts.getSearchResults);
 router.route('/posts-filter/:industryNames/:skillNames')
   .get(requireAuth, Posts.getFilteredPosts);
 
-// router.route('/posts-filter-industries/:industryNames')
-//   .get(requireAuth, Posts.getFilteredIndustries);
-// router.route('/posts-filter-skills/:skillNames')
-//   .get(requireAuth, Posts.getFilteredSkills);
+// no longer using, moved post search functionality entirely to front-end implementation
+// router.route('/posts-search/:searchterm')
+//   .get(requireAuth, Posts.getSearchResults);
 
 router.route('/posts/:id')
   .get(requireAuth, Posts.getPost)
