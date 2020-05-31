@@ -32,7 +32,10 @@ export const createStudent = ((req, res) => {
 });
 
 export const getStudents = (req, res) => {
-  Student.find().populate('relevant_classes').populate('interested_industries').populate('skills')
+  Student.find()
+    .populate('relevant_classes')
+    .populate('interested_industries')
+    .populate('skills')
     .then((result) => {
       res.json(result);
     })
@@ -42,7 +45,10 @@ export const getStudents = (req, res) => {
 };
 
 export const getStudentByID = (req, res) => {
-  Student.findById(req.params.id).populate('relevant_classes').populate('interested_industries').populate('skills')
+  Student.findById(req.params.id)
+    .populate('relevant_classes')
+    .populate('interested_industries')
+    .populate('skills')
     .then((result) => {
       res.json(result);
     })
@@ -52,7 +58,10 @@ export const getStudentByID = (req, res) => {
 };
 
 export const getStudentByUserID = (req, res) => {
-  Student.findOne({ user_id: req.params.userID }).populate('relevant_classes').populate('interested_industries').populate('skills')
+  Student.findOne({ user_id: req.params.userID })
+    .populate('relevant_classes')
+    .populate('interested_industries')
+    .populate('skills')
     .then((result) => {
       res.json(result);
     })
@@ -70,9 +79,14 @@ export const deleteStudent = (req, res) => {
 };
 
 export const updateStudent = (req, res) => {
-  Student.findByIdAndUpdate(req.params.id, req.body, { new: true }).then((result) => {
-    res.json(result);
-  }).catch((error) => {
-    res.status(500).json({ error });
-  });
+  Student.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .populate('relevant_classes')
+    .populate('interested_industries')
+    .populate('skills')
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((error) => {
+      res.status(500).json({ error });
+    });
 };
