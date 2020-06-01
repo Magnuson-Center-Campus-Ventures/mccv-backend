@@ -48,6 +48,9 @@ router.route('/startups/:id')
   .put(requireAuth, Startups.updateStartup)
   .delete(requireAuth, Startups.deleteStartup);
 
+router.route('/startupprofile/:userID')
+  .get(requireAuth, Startups.getStartupByUserID);
+
 /* // not using startupusers
 router.route('/startupusers')
   .get(requireAuth, StartupUsers.getStartupUsers)
