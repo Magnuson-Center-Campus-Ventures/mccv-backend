@@ -162,11 +162,11 @@ router.route('/otherexperiences/:id')
   .put(requireAuth, OtherExperiences.updateOtherExperience)
   .delete(requireAuth, OtherExperiences.deleteOtherExperience);
 
-router.route('/questitons')
+router.route('/questions')
   .get(requireAuth, Questions.getQuestions)
   .post(requireAuth, Questions.createQuestion);
 
-router.route('/questitons/:id')
+router.route('/questions/:id')
   .get(requireAuth, Questions.getQuestion)
   .put(requireAuth, Questions.updateQuestion)
   .delete(requireAuth, Questions.deleteQuestion);
