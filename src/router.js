@@ -80,9 +80,12 @@ router.route('/users')
   .get(requireAuth, Users.getUsers);
 
 router.route('/users/:id')
-  .get(requireAuth, Users.getUser)
+  .get(requireAuth, Users.getUserByID)
   .put(requireAuth, Users.updateUser)
   .delete(requireAuth, Users.deleteUser);
+
+router.route('/studentuser/:studentID')
+  .get(requireAuth, Users.getUserByStudentID);
 
 // work experiences routes
 router.route('/workexperiences')

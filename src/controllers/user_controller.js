@@ -96,8 +96,16 @@ export const getUsers = (req, res) => {
     });
 };
 
-export const getUser = (req, res) => {
+export const getUserByID = (req, res) => {
   User.findById(req.params.id).then((result) => {
+    res.json(result);
+  }).catch((error) => {
+    res.status(404).json({ error });
+  });
+};
+
+export const getUserByStudentID = (req, res) => {
+  User.findOne({ student_profile_id: req.params.studentID }).then((result) => {
     res.json(result);
   }).catch((error) => {
     res.status(404).json({ error });
