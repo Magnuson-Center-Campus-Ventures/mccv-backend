@@ -8,7 +8,8 @@ dotenv.config({ silent: true });
 
 // signin, signup based on lab5
 export const signin = (req, res) => {
-  res.send({ token: tokenForUser(req.user), id: req.user.id });
+  console.log('from back ', req.user.role)
+  res.send({ token: tokenForUser(req.user), id: req.user.id, role: req.user.role });
 };
 
 export const signup = (req, res) => {
