@@ -36,7 +36,7 @@ export const signup = (req, res) => {
         if (user.role === 'student') { // if user role is student, save user
           const student = new Student();
           user.save().then((result) => {
-            res.send({ token: tokenForUser(result), id: user._id });
+            res.send({ token: tokenForUser(result), id: user._id, role: user.role });
           }).then((result2) => { // if saved user, save a student with user_id prefilled
             student.user_id = user._id;
             student.save().then((result3) => {
@@ -56,7 +56,7 @@ export const signup = (req, res) => {
         } else if (user.role === 'startup') { // if user role is startup, save user
           const startup = new Startup();
           user.save().then((result) => {
-            res.send({ token: tokenForUser(result), id: user._id });
+            res.send({ token: tokenForUser(result), id: user._id, role: user.role });
           }).then((result2) => { // if saved user, save a startup with user_id and status prefilled
             startup.user_id = user._id;
             startup.status = 'pending';
