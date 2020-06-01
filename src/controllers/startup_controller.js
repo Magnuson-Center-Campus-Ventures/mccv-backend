@@ -63,3 +63,13 @@ export const updateStartup = (req, res) => {
     res.status(500).json({ error });
   });
 };
+
+export const getStartupByUserID = (req, res) => {
+  Startup.findOne({ user_id: req.params.userID })
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((error) => {
+      res.status(404).json({ error });
+    });
+};
