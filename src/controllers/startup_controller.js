@@ -22,7 +22,7 @@ export const createStartup = (req, res) => {
 };
 
 export const getStartups = (req, res) => {
-  Startup.find().then((result) => {
+  Startup.find().populate('posts').then((result) => {
     res.json(result);
   })
     .catch((error) => {
@@ -30,18 +30,19 @@ export const getStartups = (req, res) => {
     });
 };
 
-export const getSearchResults = (req, res) => {
-  // console.log(req.params.searchterm)
-  Startup.find({ $text: { $search: req.params.searchterm } }).then((result) => {
-    res.json(result);
-  })
-    .catch((error) => {
-      res.status(404).json({ error });
-    });
-};
+// no longer using, moved search functionality entirely to front-end implementation
+// export const getSearchResults = (req, res) => {
+//   // console.log(req.params.searchterm)
+//   Startup.find({ $text: { $search: req.params.searchterm } }).then((result) => {
+//     res.json(result);
+//   })
+//     .catch((error) => {
+//       res.status(404).json({ error });
+//     });
+// };
 
 export const getStartup = (req, res) => {
-  Startup.findById(req.params.id).then((result) => {
+  Startup.findById(req.params.id).populate('posts').then((result) => {
     res.json(result);
   }).catch((error) => {
     res.status(404).json({ error });
@@ -65,7 +66,7 @@ export const updateStartup = (req, res) => {
 };
 
 export const getStartupByUserID = (req, res) => {
-  Startup.findOne({ user_id: req.params.userID })
+  Startup.findOne({ user_id: req.params.userID }).populate('posts')
     .then((result) => {
       res.json(result);
     })

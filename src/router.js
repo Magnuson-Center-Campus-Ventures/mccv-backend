@@ -40,8 +40,9 @@ router.route('/startups')
   .get(requireAuth, Startups.getStartups)
   .post(requireAuth, Startups.createStartup);
 
-router.route('/startups-search/:searchterm')
-  .get(requireAuth, Startups.getSearchResults);
+// no longer using, moved search functionality entirely to front-end implementation
+// router.route('/startups-search/:searchterm')
+//   .get(requireAuth, Startups.getSearchResults);
 
 router.route('/startups/:id')
   .get(requireAuth, Startups.getStartup)
