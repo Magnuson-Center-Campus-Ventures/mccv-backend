@@ -20,7 +20,8 @@ export const createPost = (req, res) => {
   post.applicants = req.body.applicants;
   post.application_id = req.body.application_id;
   post.students_selected = req.body.students_selected;
-  post.location = req.body.location;
+  post.city = req.body.city;
+  post.state = req.body.state;
   post.remote = req.body.remote;
   post.save()
     .then((result) => {
