@@ -79,14 +79,17 @@ export const deleteStudent = (req, res) => {
 };
 
 export const updateStudent = (req, res) => {
-  Student.findByIdAndUpdate(req.params.id, req.body, { new: true })
+  console.log('from front: ',req.body)
+  Student.findOneAndUpdate(req.params.id, req.body.status, { new: true })
     .populate('relevant_classes')
     .populate('interested_industries')
     .populate('skills')
     .then((result) => {
+      console.log('result', {result})
       res.json(result);
     })
     .catch((error) => {
+      console.log(error)
       res.status(500).json({ error });
     });
 };

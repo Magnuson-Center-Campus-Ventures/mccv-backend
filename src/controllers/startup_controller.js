@@ -58,7 +58,9 @@ export const deleteStartup = (req, res) => {
 };
 
 export const updateStartup = (req, res) => {
-  Startup.findByIdAndUpdate(req.params.id, req.body, { new: true }).then((result) => {
+  Startup.findByIdAndUpdate(req.params.id, req.body, { new: true })
+  .populate('posts')
+  .then((result) => {
     res.json(result);
   }).catch((error) => {
     res.status(500).json({ error });
