@@ -18,7 +18,8 @@ const PostSchema = new Schema({
   applicants: Array,
   application_id: String,
   students_selected: Array,
-  location: String,
+  city: String,
+  state: String,
   remote: Boolean,
 }, {
   toObject: { virtuals: true },
