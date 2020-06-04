@@ -3,7 +3,8 @@ import mongoose, { Schema } from 'mongoose';
 const WorkExperienceSchema = new Schema({
   employer: String,
   role: String,
-  location: String,
+  city: String,
+  state: String,
   start_date: Date,
   end_date: Date,
   currently_working: Boolean,
