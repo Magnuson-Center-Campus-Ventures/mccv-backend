@@ -20,7 +20,8 @@ export const createPost = (req, res) => {
   post.applicants = req.body.applicants;
   post.application_id = req.body.application_id;
   post.students_selected = req.body.students_selected;
-  post.location = req.body.location;
+  post.city = req.body.city;
+  post.state = req.body.state;
   post.remote = req.body.remote;
   post.save()
     .then((result) => {
@@ -32,30 +33,35 @@ export const createPost = (req, res) => {
 };
 
 export const getPosts = (req, res) => {
-  Post.find().populate('startup_id').then((result) => {
-    res.json(result);
-  })
+  Post.find()
+    .populate('startup_id')
+    .populate('industries')
+    .populate('required_skills')
+    .populate('preferred_skills')
+    .populate('desired_classes')
+    .populate('students_selected')
+    .then((result) => {
+      res.json(result);
+    })
     .catch((error) => {
       res.status(404).json({ error });
     });
 };
 
-// no longer using because moved post search functionality to front-end
-// export const getSearchResults = (req, res) => {
-//   Post.find({ $text: { $search: req.params.searchterm } }).then((result) => {
-//     res.json(result);
-//   })
-//     .catch((error) => {
-//       res.status(404).json({ error });
-//     });
-// };
-
 export const getPost = (req, res) => {
-  Post.findById(req.params.id).populate('startup_id').then((result) => {
-    res.json(result);
-  }).catch((error) => {
-    res.status(404).json({ error });
-  });
+  Post.findById(req.params.id)
+    .populate('startup_id')
+    .populate('industries')
+    .populate('required_skills')
+    .populate('preferred_skills')
+    .populate('desired_classes')
+    .populate('students_selected')
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((error) => {
+      res.status(404).json({ error });
+    });
 };
 
 export const deletePost = (req, res) => {
@@ -67,9 +73,17 @@ export const deletePost = (req, res) => {
 };
 
 export const updatePost = (req, res) => {
-  Post.findByIdAndUpdate(req.params.id, req.body, { new: true }).then((result) => {
-    res.json(result);
-  }).catch((error) => {
-    res.status(500).json({ error });
-  });
+  Post.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .populate('startup_id')
+    .populate('industries')
+    .populate('required_skills')
+    .populate('preferred_skills')
+    .populate('desired_classes')
+    .populate('students_selected')
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((error) => {
+      res.status(500).json({ error });
+    });
 };

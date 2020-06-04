@@ -4,7 +4,8 @@ export const createWorkExperience = (req, res) => {
   const workExperience = new WorkExperience();
   workExperience.employer = req.body.employer;
   workExperience.role = req.body.role;
-  workExperience.location = req.body.location;
+  workExperience.city = req.body.city;
+  workExperience.state = req.body.state;
   workExperience.start_date = req.body.start_date;
   workExperience.end_date = req.body.end_date;
   workExperience.currently_working = req.body.currently_working;
