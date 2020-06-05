@@ -79,7 +79,7 @@ export const deleteStudent = (req, res) => {
 };
 
 export const updateStudent = (req, res) => {
-  Student.findOneAndUpdate(req.params.id, req.body, { new: true })
+  Student.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .populate('relevant_classes')
     .populate('interested_industries')
     .populate('skills')
