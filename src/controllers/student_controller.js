@@ -84,9 +84,11 @@ export const updateStudent = (req, res) => {
     .populate('interested_industries')
     .populate('skills')
     .then((result) => {
+      // console.log(result)
       res.json(result);
     })
     .catch((error) => {
+      console.log(error)
       res.status(500).json({ error });
     });
 };
