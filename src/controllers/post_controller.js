@@ -39,6 +39,7 @@ export const getPosts = (req, res) => {
     .populate('required_skills')
     .populate('preferred_skills')
     .populate('desired_classes')
+    .populate('applicants')
     .populate('students_selected')
     .then((result) => {
       res.json(result);
@@ -55,6 +56,7 @@ export const getPost = (req, res) => {
     .populate('required_skills')
     .populate('preferred_skills')
     .populate('desired_classes')
+    .populate('applicants')
     .populate('students_selected')
     .then((result) => {
       res.json(result);
@@ -79,6 +81,7 @@ export const updatePost = (req, res) => {
     .populate('required_skills')
     .populate('preferred_skills')
     .populate('desired_classes')
+    .populate('applicants')
     .populate('students_selected')
     .then((result) => {
       res.json(result);
