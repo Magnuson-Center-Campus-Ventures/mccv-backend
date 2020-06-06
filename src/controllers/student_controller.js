@@ -16,6 +16,7 @@ export const createStudent = ((req, res) => {
   student.work_exp = req.body.work_experiences;
   student.relevant_classes = req.body.relevant_classes;
   student.other_exp = req.body.other_exp;
+  student.status = req.body.status;
   student.desired_start_date = req.body.desired_start_date;
   student.desired_end_date = req.body.desired_end_date;
   student.time_commitment = req.body.time_commitment;

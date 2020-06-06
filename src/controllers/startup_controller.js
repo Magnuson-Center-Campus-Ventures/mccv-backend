@@ -3,6 +3,7 @@ import Startup from '../models/startup_model';
 export const createStartup = (req, res) => {
   const startup = new Startup();
   startup.user_id = req.body.user_id;
+  startup.logo = req.body.logo;
   startup.name = req.body.name;
   startup.contact_email = req.body.contact_email;
   startup.industries = req.body.industries;

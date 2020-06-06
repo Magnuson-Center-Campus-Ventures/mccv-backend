@@ -39,6 +39,7 @@ export const signup = (req, res) => {
             res.send({ token: tokenForUser(result), id: user._id, role: user.role });
           }).then((result2) => { // if saved user, save a student with user_id prefilled
             student.user_id = user._id;
+            student.status = 'Approved';
             student.save().then((result3) => {
               // if saved student, update previously created user with student_profile_od
               user.student_profile_id = student._id;
@@ -59,7 +60,7 @@ export const signup = (req, res) => {
             res.send({ token: tokenForUser(result), id: user._id, role: user.role });
           }).then((result2) => { // if saved user, save a startup with user_id and status prefilled
             startup.user_id = user._id;
-            startup.status = 'pending';
+            startup.status = 'Pending';
             startup.save().then((result3) => {
               // if saved startup, update previously created user with startup_id
               user.startup_id = startup._id;
