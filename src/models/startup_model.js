@@ -2,6 +2,7 @@ import mongoose, { Schema } from 'mongoose';
 
 const StartupSchema = new Schema({
   user_id: String,
+  logo: String,
   name: String,
   contact_email: String,
   // industries: Array,
