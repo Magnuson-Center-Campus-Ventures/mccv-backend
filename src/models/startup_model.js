@@ -2,9 +2,11 @@ import mongoose, { Schema } from 'mongoose';
 
 const StartupSchema = new Schema({
   user_id: String,
+  logo: String,
   name: String,
   contact_email: String,
-  industries: Array,
+  // industries: Array,
+  industries: [{ type: Schema.Types.ObjectId, ref: 'Industry' }],
   description: String,
   video: String,
   // posts: Array,

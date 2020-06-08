@@ -3,6 +3,7 @@ import Startup from '../models/startup_model';
 export const createStartup = (req, res) => {
   const startup = new Startup();
   startup.user_id = req.body.user_id;
+  startup.logo = req.body.logo;
   startup.name = req.body.name;
   startup.contact_email = req.body.contact_email;
   startup.industries = req.body.industries;
@@ -22,31 +23,27 @@ export const createStartup = (req, res) => {
 };
 
 export const getStartups = (req, res) => {
-  Startup.find().populate('posts').then((result) => {
-    res.json(result);
-  })
+  Startup.find()
+    .populate('posts')
+    .populate('industries')
+    .then((result) => {
+      res.json(result);
+    })
     .catch((error) => {
       res.status(404).json({ error });
     });
 };
 
-// no longer using, moved search functionality entirely to front-end implementation
-// export const getSearchResults = (req, res) => {
-//   // console.log(req.params.searchterm)
-//   Startup.find({ $text: { $search: req.params.searchterm } }).then((result) => {
-//     res.json(result);
-//   })
-//     .catch((error) => {
-//       res.status(404).json({ error });
-//     });
-// };
-
 export const getStartup = (req, res) => {
-  Startup.findById(req.params.id).populate('posts').then((result) => {
-    res.json(result);
-  }).catch((error) => {
-    res.status(404).json({ error });
-  });
+  Startup.findById(req.params.id)
+    .populate('posts')
+    .populate('industries')
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((error) => {
+      res.status(404).json({ error });
+    });
 };
 
 export const deleteStartup = (req, res) => {
@@ -58,15 +55,21 @@ export const deleteStartup = (req, res) => {
 };
 
 export const updateStartup = (req, res) => {
-  Startup.findByIdAndUpdate(req.params.id, req.body, { new: true }).then((result) => {
-    res.json(result);
-  }).catch((error) => {
-    res.status(500).json({ error });
-  });
+  Startup.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .populate('posts')
+    .populate('industries')
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((error) => {
+      res.status(500).json({ error });
+    });
 };
 
 export const getStartupByUserID = (req, res) => {
-  Startup.findOne({ user_id: req.params.userID }).populate('posts')
+  Startup.findOne({ user_id: req.params.userID })
+    .populate('posts')
+    .populate('industries')
     .then((result) => {
       res.json(result);
     })
