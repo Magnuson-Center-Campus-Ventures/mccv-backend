@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 app.use('/api', apiRouter);
 
 // DB Setup
-const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/mcv';
+const mongoURI = process.env.DB_URI || 'mongodb://localhost/mcv';
 mongoose.connect(mongoURI);
 // set mongoose promises to es6 default
 mongoose.Promise = global.Promise;
