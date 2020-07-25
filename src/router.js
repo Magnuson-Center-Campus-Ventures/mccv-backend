@@ -13,6 +13,7 @@ import * as Classes from './controllers/class_controller';
 import * as Industries from './controllers/industry_controller';
 import * as OtherExperiences from './controllers/other_experience_controller';
 import * as Questions from './controllers/question_controller';
+import * as PasswordReset from './controllers/password_reset_controller';
 import { requireAuth, requireSignin } from './services/passport';
 
 const router = Router();
@@ -177,6 +178,10 @@ router.route('/questions/:id')
   .get(requireAuth, Questions.getQuestion)
   .put(requireAuth, Questions.updateQuestion)
   .delete(requireAuth, Questions.deleteQuestion);
+
+// password reset route
+router.post('/updatepassword', PasswordReset.updatePassword);
+router.post('/forgotpassword', PasswordReset.createToken);
 
 // auth routes
 router.post('/signin', requireSignin, Users.signin);
