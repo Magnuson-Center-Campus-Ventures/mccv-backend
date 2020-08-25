@@ -7,6 +7,7 @@ const UserSchema = new Schema({
   role: String,
   student_profile_id: String,
   startup_id: String,
+  signed: Date,
 }, {
   toObject: { virtuals: true },
   toJSON: { virtuals: true },
