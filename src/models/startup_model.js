@@ -5,6 +5,8 @@ const StartupSchema = new Schema({
   logo: String,
   name: String,
   contact_email: String,
+  founder_gender: String, 
+  affiliation: String, 
   // industries: Array,
   industries: [{ type: Schema.Types.ObjectId, ref: 'Industry' }],
   description: String,

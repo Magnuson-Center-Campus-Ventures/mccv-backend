@@ -5,6 +5,8 @@ export const createStartup = (req, res) => {
   startup.user_id = req.body.user_id;
   startup.logo = req.body.logo;
   startup.name = req.body.name;
+  startup.affiliation = req.body.affiliation; 
+  startup.founder_gender = req.body.founder_gender;  
   startup.contact_email = req.body.contact_email;
   startup.industries = req.body.industries;
   startup.description = req.body.description;
