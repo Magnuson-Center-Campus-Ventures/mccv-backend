@@ -31,7 +31,7 @@ app.use('/api', apiRouter);
 
 // DB Setup
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/mcv';
-mongoose.connect(mongoURI);
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 // set mongoose promises to es6 default
 mongoose.Promise = global.Promise;
 
