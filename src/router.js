@@ -14,6 +14,7 @@ import * as Industries from './controllers/industry_controller';
 import * as OtherExperiences from './controllers/other_experience_controller';
 import * as Questions from './controllers/question_controller';
 import * as PasswordReset from './controllers/password_reset_controller';
+import * as S3 from './services/s3';
 import { requireAuth, requireSignin } from './services/passport';
 
 const router = Router();
@@ -183,7 +184,13 @@ router.route('/questions/:id')
 router.post('/updatepassword', PasswordReset.updatePassword);
 router.post('/forgotpassword', PasswordReset.createToken);
 
+// s3 route
+router.get('/sign-s3', S3.signS3);
+
 // auth routes
 router.post('/signin', requireSignin, Users.signin);
 router.post('/signup', Users.signup);
+
+router.post('/emailexists/', Users.emailExists);
+
 export default router;

@@ -32,6 +32,7 @@ export const signup = (req, res) => {
         user.role = req.body.role;
         user.student_profile_id = req.body.student_profile_id;
         user.startup_id = req.body.startup_id;
+        user.signed = req.body.signed;
 
         // depending on role, create appropriate profiles
         if (user.role === 'student') { // if user role is student, save user
@@ -130,4 +131,19 @@ export const updateUser = (req, res) => {
   }).catch((error) => {
     res.status(500).json({ error });
   });
+};
+
+export const emailExists = (req, res) => {
+  const { email } = req.body;
+
+  User.findOne({ email })
+    .then((foundUser) => {
+      if (foundUser) { // if the user exists, then return error
+        res.status(200).send('Email found');
+      } else {
+        res.status(200).send('No Email found');
+      }
+    }).catch((error) => {
+      res.status(500).json({ error });
+    });
 };
