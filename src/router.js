@@ -190,4 +190,7 @@ router.get('/sign-s3', S3.signS3);
 // auth routes
 router.post('/signin', requireSignin, Users.signin);
 router.post('/signup', Users.signup);
+
+router.post('/emailexists/', Users.emailExists);
+
 export default router;

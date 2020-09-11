@@ -131,3 +131,18 @@ export const updateUser = (req, res) => {
     res.status(500).json({ error });
   });
 };
+
+export const emailExists = (req, res) => {
+  const { email } = req.body;
+
+  User.findOne({ email })
+    .then((foundUser) => {
+      if (foundUser) { // if the user exists, then return error
+        res.status(200).send('Email found');
+      } else {
+        res.status(200).send('No Email found');
+      }
+    }).catch((error) => {
+      res.status(500).json({ error });
+    });
+};
