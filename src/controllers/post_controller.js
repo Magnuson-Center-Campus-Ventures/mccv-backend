@@ -22,7 +22,8 @@ export const createPost = (req, res) => {
   post.students_selected = req.body.students_selected;
   post.city = req.body.city;
   post.state = req.body.state;
-  post.remote = req.body.remote;
+  post.virtual = req.body.virtual;
+  post.inperson = req.body.inperson;
   post.save()
     .then((result) => {
       res.json(result);

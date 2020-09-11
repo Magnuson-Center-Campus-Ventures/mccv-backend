@@ -7,6 +7,8 @@ export const createStudent = ((req, res) => {
   student.first_name = req.body.first_name;
   student.last_name = req.body.last_name;
   student.gender = req.body.gender;
+  student.bio = req.body.bio;
+  student.affiliation = req.body.affiliation;
   student.phone_number = req.body.phone_number;
   student.majors = req.body.majors;
   student.minors = req.body.minors;
