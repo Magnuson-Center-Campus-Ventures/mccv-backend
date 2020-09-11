@@ -32,6 +32,7 @@ export const signup = (req, res) => {
         user.role = req.body.role;
         user.student_profile_id = req.body.student_profile_id;
         user.startup_id = req.body.startup_id;
+        user.signed = req.body.signed;
 
         // depending on role, create appropriate profiles
         if (user.role === 'student') { // if user role is student, save user
