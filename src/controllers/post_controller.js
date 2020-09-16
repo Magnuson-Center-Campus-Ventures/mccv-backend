@@ -1,6 +1,7 @@
 // For companies' volunteer position postings
 
 import Post from '../models/post_model';
+import Application from '../models/application_model';
 
 export const createPost = (req, res) => {
   const post = new Post();
@@ -24,8 +25,22 @@ export const createPost = (req, res) => {
   post.state = req.body.state;
   post.virtual = req.body.virtual;
   post.inperson = req.body.inperson;
+
   post.save()
     .then((result) => {
+      const application = new Application();
+      application.post_id = post._id;
+      application.save()
+        .then((result2) => {
+          post.application_id = application.id;
+          Post.findByIdAndUpdate(post._id, post, { new: true }).then((result4) => {
+            console.log('updated post with applicatio');
+          }).catch((error) => { // error updating user
+            res.status(500).json({ error });
+          });
+        }).catch((error) => {
+          res.status(500).json({ error });
+        });
       res.json(result);
     })
     .catch((error) => {
@@ -83,6 +98,7 @@ export const updatePost = (req, res) => {
     .populate('preferred_skills')
     .populate('desired_classes')
     .populate('applicants')
+    .populate('applicaton_id')
     .populate('students_selected')
     .then((result) => {
       res.json(result);
