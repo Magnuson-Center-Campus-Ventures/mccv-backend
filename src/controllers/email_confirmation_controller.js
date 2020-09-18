@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import jwt from 'jwt-simple';
 import bcrypt from 'bcryptjs';
 import User from '../models/user_model';
-import EmailConfirmatio from '../models/email_confirmation_model';
+import EmailConfirmation from '../models/email_confirmation_model';
 
 dotenv.config({ silent: true });
 
@@ -22,7 +22,7 @@ export const createToken = (req, res) => {
         res.status(404).send('(Not found)');
       } else {
         // generate token that contains created date and email
-        const reset = new EmailConfirmatio();
+        const reset = new EmailConfirmation();
         reset.email = email;
         const timestamp = new Date().getTime();
         reset.token = jwt.encode({ sub: email, iat: timestamp }, process.env.AUTH_SECRET);
@@ -37,7 +37,7 @@ export const createToken = (req, res) => {
 };
 
 // once link generated above is clicked, calls this function
-export const updatePassword = (req, res) => {
+export const confirmEmail = (req, res) => {
   const { token } = req.body;
   const { password } = req.body;
 
@@ -78,7 +78,7 @@ export const updatePassword = (req, res) => {
 
 // from https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/ses-examples-sending-email.html
 function sendResetEmail(email, token) {
-  // const url = 'http://cs52-mcv.surge.sh//resetpassword/?token='.concat(token);
+  // const url = 'http://cs52-mcv.surge.sh/resetpassword/?token='.concat(token);
   const url = 'http://localhost:8080/resetpassword/?token='.concat(token);
   // Load the AWS SDK for Node.js
   // eslint-disable-next-line global-require
@@ -97,12 +97,12 @@ function sendResetEmail(email, token) {
       Body: { /* required */
         Html: {
           Charset: 'UTF-8',
-          Data: 'We received a request to reset the password to access the Magnuson Center Campus Ventures web application with your email address.<br/><br/>Click the link below in the next 10 minutes to change your password:<br/><br/>'.concat(url).concat('<br/><br/>If you do not the use Magnuson Center Campus Ventures web application or did not request a password reset, please ignore this email or contact support if you have questions.<br/><br/>Thanks,<br/>The Magnuson Center Campus Ventures Team'),
+          Data: 'We received a request to signup for the Magnuson Center Campus Ventures web application with your email address.<br/><br/>Click the link below in the next 10 minutes to signup:<br/><br/>'.concat(url).concat('<br/><br/>If you do not the use Magnuson Center Campus Ventures web application or did not attempt to signup, please ignore this email or contact support if you have questions.<br/><br/>Thanks,<br/>The Magnuson Center Campus Ventures Team'),
         },
       },
       Subject: {
         Charset: 'UTF-8',
-        Data: 'Password reset for MCCV account',
+        Data: 'Email Confirmation for MCCV account',
       },
     },
     Source: 'no.reply.mccv@gmail.com', /* required */

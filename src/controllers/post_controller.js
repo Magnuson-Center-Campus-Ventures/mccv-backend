@@ -1,7 +1,6 @@
 // For companies' volunteer position postings
 
 import Post from '../models/post_model';
-import Application from '../models/application_model';
 
 export const createPost = (req, res) => {
   const post = new Post();
@@ -28,19 +27,6 @@ export const createPost = (req, res) => {
 
   post.save()
     .then((result) => {
-      const application = new Application();
-      application.post_id = post._id;
-      application.save()
-        .then((result2) => {
-          post.application_id = application.id;
-          Post.findByIdAndUpdate(post._id, post, { new: true }).then((result4) => {
-            console.log('updated post with applicatio');
-          }).catch((error) => { // error updating user
-            res.status(500).json({ error });
-          });
-        }).catch((error) => {
-          res.status(500).json({ error });
-        });
       res.json(result);
     })
     .catch((error) => {
