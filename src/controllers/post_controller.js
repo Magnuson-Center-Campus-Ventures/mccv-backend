@@ -7,6 +7,7 @@ export const createPost = (req, res) => {
   post.startup_id = req.body.startup_id;
   post.title = req.body.title;
   post.description = req.body.description;
+  post.questions = req.body.questions;
   post.industries = req.body.industries;
   post.required_skills = req.body.required_skills;
   post.preferred_skills = req.body.preferred_skills;
@@ -18,7 +19,6 @@ export const createPost = (req, res) => {
   post.availabile_until = req.body.availabile_until;
   post.status = req.body.status;
   post.applicants = req.body.applicants;
-  post.application_id = req.body.application_id;
   post.students_selected = req.body.students_selected;
   post.city = req.body.city;
   post.state = req.body.state;
@@ -84,7 +84,6 @@ export const updatePost = (req, res) => {
     .populate('preferred_skills')
     .populate('desired_classes')
     .populate('applicants')
-    .populate('applicaton_id')
     .populate('students_selected')
     .then((result) => {
       res.json(result);
