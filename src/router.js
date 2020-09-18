@@ -6,13 +6,11 @@ import * as Startups from './controllers/startup_controller';
 import * as Students from './controllers/student_controller';
 import * as Users from './controllers/user_controller';
 import * as WorkExperiences from './controllers/work_experience_controller';
-import * as Applications from './controllers/application_controller';
 import * as SubmittedApplications from './controllers/submitted_application_controller';
 import * as Skills from './controllers/skill_controller';
 import * as Classes from './controllers/class_controller';
 import * as Industries from './controllers/industry_controller';
 import * as OtherExperiences from './controllers/other_experience_controller';
-import * as Questions from './controllers/question_controller';
 import * as PasswordReset from './controllers/password_reset_controller';
 import * as S3 from './services/s3';
 import { requireAuth, requireSignin } from './services/passport';
@@ -101,16 +99,6 @@ router.route('/workexperiences/:id')
   .put(requireAuth, WorkExperiences.updateWorkExperience)
   .delete(requireAuth, WorkExperiences.deleteWorkExperience);
 
-// applications routes
-router.route('/applications')
-  .get(requireAuth, Applications.getApplications)
-  .post(requireAuth, Applications.createApplication);
-
-router.route('/applications/:id')
-  .get(requireAuth, Applications.getApplication)
-  .put(requireAuth, Applications.updateApplication)
-  .delete(requireAuth, Applications.deleteApplication);
-
 // submitted applications routes
 router.route('/submittedapplications')
   .get(requireAuth, SubmittedApplications.getSubmittedApplications)
@@ -170,15 +158,6 @@ router.route('/otherexperiences/:idArray')
 router.route('/otherexperiences/:id')
   .put(requireAuth, OtherExperiences.updateOtherExperience)
   .delete(requireAuth, OtherExperiences.deleteOtherExperience);
-
-router.route('/questions')
-  .get(requireAuth, Questions.getQuestions)
-  .post(requireAuth, Questions.createQuestion);
-
-router.route('/questions/:id')
-  .get(requireAuth, Questions.getQuestion)
-  .put(requireAuth, Questions.updateQuestion)
-  .delete(requireAuth, Questions.deleteQuestion);
 
 // password reset route
 router.post('/updatepassword', PasswordReset.updatePassword);
