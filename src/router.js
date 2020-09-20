@@ -12,6 +12,7 @@ import * as Classes from './controllers/class_controller';
 import * as Industries from './controllers/industry_controller';
 import * as OtherExperiences from './controllers/other_experience_controller';
 import * as PasswordReset from './controllers/password_reset_controller';
+import * as EmailConfirmation from './controllers/email_confirmation_controller';
 import * as S3 from './services/s3';
 import { requireAuth, requireSignin } from './services/passport';
 
@@ -162,6 +163,10 @@ router.route('/otherexperiences/:id')
 // password reset route
 router.post('/updatepassword', PasswordReset.updatePassword);
 router.post('/forgotpassword', PasswordReset.createToken);
+
+// email confirmation route
+router.post('/emailconfirmation', EmailConfirmation.createToken);
+router.post('/confirmemail', EmailConfirmation.confirmSignUp);
 
 // s3 route
 router.get('/sign-s3', S3.signS3);
