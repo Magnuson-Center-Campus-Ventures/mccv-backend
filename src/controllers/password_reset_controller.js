@@ -97,7 +97,7 @@ function sendResetEmail(email, token) {
       Body: { /* required */
         Html: {
           Charset: 'UTF-8',
-          Data: 'We received a request to reset the password to access the Magnuson Center Campus Ventures web application with your email address.<br/><br/>Click the link below in the next 10 minutes to change your password:<br/><br/>'.concat(url).concat('<br/><br/>If you do not the use Magnuson Center Campus Ventures web application or did not request a password reset, please ignore this email or contact support if you have questions.<br/><br/>Thanks,<br/>The Magnuson Center Campus Ventures Team'),
+          Data: 'We received a request to reset the password to access the Magnuson Center Campus Ventures web application with your email address.<br/><br/>Click the link below in the next 10 minutes to change your password:<br/><br/>'.concat(url).concat('<br/><br/>If you do not use the Magnuson Center Campus Ventures web application or did not request a password reset, please ignore this email or contact support if you have questions.<br/><br/>Thanks,<br/>The Magnuson Center Campus Ventures Team'),
         },
       },
       Subject: {
