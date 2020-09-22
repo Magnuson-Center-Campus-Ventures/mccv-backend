@@ -78,7 +78,7 @@ export const updatePassword = (req, res) => {
 
 // from https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/ses-examples-sending-email.html
 function sendResetEmail(email, token) {
-  const url = 'http://cs52-mcv.surge.sh/resetpassword/?token='.concat(token);
+  const url = 'http://dartmouth-mccv.surge.sh/resetpassword/?token='.concat(token);
   // const url = 'http://localhost:8080/resetpassword/?token='.concat(token);
   // Load the AWS SDK for Node.js
   // eslint-disable-next-line global-require
