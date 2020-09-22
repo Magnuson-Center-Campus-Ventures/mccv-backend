@@ -1,35 +1,37 @@
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable camelcase */
 import dotenv from 'dotenv';
 import User from '../models/user_model';
 import EmailNotification from '../models/email_notification_model';
 
 dotenv.config({ silent: true });
 
-const sendEmailNotification = (req, res) => {
-  const { email } = req.body;
+export const sendEmailNotification = (req, res) => {
+  const { user_id } = req.body;
   const { type } = req.body;
   const { info } = req.body;
 
   // check fields
-  if (!email) {
-    res.status(406).send('You must provide email');
+  if (!user_id) {
+    res.status(406).send('You must provide user id');
   }
   if (!type) {
     res.status(406).send('You must provide type');
   }
 
   // find email in db
-  User.findOne({ email })
+  User.findById(user_id)
     .then((foundUser) => {
       if (!foundUser) {
         res.status(404).send('(Not found)');
       } else {
         // generate token that contains created date and email
         const notification = new EmailNotification();
-        notification.email = email;
+        notification.user_id = user_id;
         notification.type = type;
         notification.info = info;
         notification.save();
-        sendEmail(notification.email, notification.type, notification.info);
+        sendEmail(foundUser.email, notification.type, notification.info);
         res.send('Success');
       }
     }).catch((error) => {
@@ -39,6 +41,7 @@ const sendEmailNotification = (req, res) => {
 
 // from https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/ses-examples-sending-email.html
 function sendEmail(email, type, info) {
+  console.log(email, type);
   // Load the AWS SDK for Node.js
   // eslint-disable-next-line global-require
   const AWS = require('aws-sdk');
@@ -68,8 +71,8 @@ function sendEmail(email, type, info) {
   };
 
   switch (type) {
-    case 'startup approve':
-      params.Message.Body.Html.Data = 'Your Startup has been approved!<br/><br/>Your startup and volunteer positions will now be available to students<br/><br/>Thanks,<br/>The Magnuson Center Campus Ventures Team';
+    case 'startup approved':
+      params.Message.Body.Html.Data = 'Your Startup has been approved!<br/><br/>Your startup and volunteer positions will now be viewable by students.<br/><br/>Thanks,<br/>The Magnuson Center Campus Ventures Team';
       params.Message.Subject.Data = 'Magnuson Center Campus Ventures: Startup Approved';
       break;
     case 'startup denial':
@@ -89,7 +92,7 @@ function sendEmail(email, type, info) {
       params.Message.Subject.Data = '';
       break;
     default:
-      return false;
+      break;
   }
 
   // Create the promise and SES service object
@@ -98,16 +101,11 @@ function sendEmail(email, type, info) {
   // Handle promise's fulfilled/rejected states
   sendPromise.then(
     (data) => {
-      return (true);
-      // console.log(data.MessageId);
+      console.log(data.MessageId);
     },
   ).catch(
     (err) => {
-      return (false);
-      // console.error(err, err.stack);
+      console.error(err, err.stack);
     },
   );
-  return (false);
 }
-
-export default sendEmailNotification;

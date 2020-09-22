@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
 const EmailNotificationSchema = new Schema({
-  email: String,
+  user_id: String,
   type: String,
   info: String,
 }, {
