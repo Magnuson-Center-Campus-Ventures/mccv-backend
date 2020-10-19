@@ -105,7 +105,7 @@ function sendResetEmail(email, token) {
         Data: 'Password reset for MCCV account',
       },
     },
-    Source: 'no.reply.mccv@gmail.com', /* required */
+    Source: 'magnuson.center.campus.ventures@dartmouth.edu', /* required */
   };
 
   // Create the promise and SES service object

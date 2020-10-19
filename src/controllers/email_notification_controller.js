@@ -67,7 +67,7 @@ function sendEmail(email, type, info) {
         Data: '',
       },
     },
-    Source: 'no.reply.mccv@gmail.com', /* required */
+    Source: 'magnuson.center.campus.ventures@dartmouth.edu', /* required */
   };
 
   switch (type) {

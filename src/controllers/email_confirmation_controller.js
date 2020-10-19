@@ -72,7 +72,7 @@ function sendConfirmationEmail(email, token) {
         Data: 'Email Confirmation for Magnuson Center Campus Ventures',
       },
     },
-    Source: 'no.reply.mccv@gmail.com', /* required */
+    Source: 'magnuson.center.campus.ventures@dartmouth.edu', /* required */
   };
 
   // Create the promise and SES service object
