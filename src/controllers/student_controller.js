@@ -39,8 +39,6 @@ export const getStudents = (req, res) => {
     .populate('relevant_classes')
     .populate('interested_industries')
     .populate('skills')
-    .populate('work_exp')
-    .populate('other_exp')
     .then((result) => {
       res.json(result);
     })
@@ -54,8 +52,6 @@ export const getStudentByID = (req, res) => {
     .populate('relevant_classes')
     .populate('interested_industries')
     .populate('skills')
-    .populate('work_exp')
-    .populate('other_exp')
     .then((result) => {
       res.json(result);
     })
@@ -69,8 +65,6 @@ export const getStudentByUserID = (req, res) => {
     .populate('relevant_classes')
     .populate('interested_industries')
     .populate('skills')
-    .populate('work_exp')
-    .populate('other_exp')
     .then((result) => {
       res.json(result);
     })
@@ -92,8 +86,6 @@ export const updateStudent = (req, res) => {
     .populate('relevant_classes')
     .populate('interested_industries')
     .populate('skills')
-    .populate('work_exp')
-    .populate('other_exp')
     .then((result) => {
       // console.log(result)
       res.json(result);
