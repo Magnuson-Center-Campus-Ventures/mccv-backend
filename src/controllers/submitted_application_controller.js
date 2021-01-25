@@ -4,7 +4,8 @@ export const createSubmittedApplication = (req, res) => {
   const submittedApplication = new SubmittedApplication();
   submittedApplication.post_id = req.body.post_id;
   submittedApplication.student_id = req.body.student_id;
-  submittedApplication.responses = req.body.responses;
+  submittedApplication.questions = req.body.questions;
+  submittedApplication.answers = req.body.answers;
   submittedApplication.status = req.body.status;
   submittedApplication.save()
     .then((result) => {

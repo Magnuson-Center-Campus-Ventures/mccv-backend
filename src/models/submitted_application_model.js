@@ -3,7 +3,8 @@ import mongoose, { Schema } from 'mongoose';
 const SubmittedApplicationSchema = new Schema({
   post_id: String,
   student_id: String,
-  responses: Map,
+  questions: Array, 
+  answers: Array,
   status: String,
 }, {
   toObject: { virtuals: true },
