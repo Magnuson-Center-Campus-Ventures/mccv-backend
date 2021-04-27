@@ -20,6 +20,7 @@ const StudentSchema = new Schema({
   desired_start_date: Date,
   desired_end_date: Date,
   time_commitment: Number,
+  job_search_status: String,
 }, {
   toObject: { virtuals: true },
   toJSON: { virtuals: true },

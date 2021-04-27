@@ -45,7 +45,7 @@ export const createToken = (req, res) => {
 // from https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/ses-examples-sending-email.html
 function sendConfirmationEmail(email, token) {
   console.log(token);
-  const url = 'http://dartmouth-mccv.surge.sh/emailconfirmation/?token='.concat(token);
+  const url = 'http://localhost:8080/emailconfirmation/?token='.concat(token);
   // const url = 'http://localhost:8080/emailconfirmation/?token='.concat(token);
   // Load the AWS SDK for Node.js
   // eslint-disable-next-line global-require
