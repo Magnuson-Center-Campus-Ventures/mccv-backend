@@ -83,7 +83,6 @@ export const deleteStudent = (req, res) => {
 };
 
 export const updateStudent = (req, res) => {
-  console.log(req)
   Student.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .populate('relevant_classes')
     .populate('interested_industries')

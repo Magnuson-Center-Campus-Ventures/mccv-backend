@@ -91,6 +91,19 @@ function sendEmail(email, type, info) {
       params.Message.Body.Html.Data = '';
       params.Message.Subject.Data = '';
       break;
+    case 'post revise':
+      params.Message.Body.Html.Data = info;
+      params.Message.Subject.Data = 'Magnuson Center Campus Ventures: Position Revised';
+      break;
+    case 'startup revise':
+      params.Message.Body.Html.Data = info;
+      params.Message.Subject.Data = 'Magnuson Center Campus Ventures: Startup Profile Revised';
+      break;
+    case 'student revise':
+      params.Message.Body.Html.Data = info;
+      params.Message.Subject.Data = 'Magnuson Center Campus Ventures: Student Profile Revised';
+      break;
+    
     default:
       break;
   }
