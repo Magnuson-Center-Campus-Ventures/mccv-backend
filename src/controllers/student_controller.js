@@ -36,12 +36,19 @@ export const createStudent = ((req, res) => {
 });
 
 export const getStudents = (req, res) => {
-  Student.find()
+  Student.find({ job_search_status: { $exists: true} })
     .populate('relevant_classes')
     .populate('interested_industries')
     .populate('skills')
-    .then((result) => {
-      res.json(result);
+    .then((result1) => {
+      Student.find({ job_search_status: { $exists: false } })
+      .populate('relevant_classes')
+      .populate('interested_industries')
+      .populate('skills')
+        .then((result2) => {
+          result1.forEach(student => result2.push(student))
+          res.json(result2);
+      })
     })
     .catch((error) => {
       res.status(404).json({ error });
@@ -83,7 +90,6 @@ export const deleteStudent = (req, res) => {
 };
 
 export const updateStudent = (req, res) => {
-  console.log(req)
   Student.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .populate('relevant_classes')
     .populate('interested_industries')
