@@ -1,4 +1,5 @@
 import Student from '../models/student_model';
+import Startup from '../models/startup_model';
 import User from '../models/user_model';
 
 export const createStudent = ((req, res) => {

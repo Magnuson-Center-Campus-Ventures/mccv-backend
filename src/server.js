@@ -26,6 +26,7 @@ app.set('views', path.join(__dirname, '../src/views'));
 
 // enable json message body for posting data to API
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({limit: '10mb'}));
 app.use(bodyParser.json());
 app.use('/api', apiRouter);
 
