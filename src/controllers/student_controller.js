@@ -22,6 +22,7 @@ export const createStudent = ((req, res) => {
   student.desired_start_date = req.body.desired_start_date;
   student.desired_end_date = req.body.desired_end_date;
   student.time_commitment = req.body.time_commitment;
+  student.job_search_status = req.body.job_search_status;
 
   student.save().then((result) => {
     // update user to have corresponding student_profile_id
@@ -87,7 +88,6 @@ export const updateStudent = (req, res) => {
     .populate('interested_industries')
     .populate('skills')
     .then((result) => {
-      // console.log(result)
       res.json(result);
     })
     .catch((error) => {

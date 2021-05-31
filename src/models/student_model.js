@@ -17,6 +17,7 @@ const StudentSchema = new Schema({
   relevant_classes: [{ type: Schema.Types.ObjectId, ref: 'Class' }],
   other_exp: Array,
   status: String,
+  job_search_status: String,
   desired_start_date: Date,
   desired_end_date: Date,
   time_commitment: Number,
