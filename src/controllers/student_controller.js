@@ -1,4 +1,5 @@
 import Student from '../models/student_model';
+import Startup from '../models/startup_model';
 import User from '../models/user_model';
 
 export const createStudent = ((req, res) => {
@@ -22,7 +23,7 @@ export const createStudent = ((req, res) => {
   student.desired_start_date = req.body.desired_start_date;
   student.desired_end_date = req.body.desired_end_date;
   student.time_commitment = req.body.time_commitment;
-  student.job_search_status = req.body.job_search_status;
+  student.job_search_status = false;
 
   student.save().then((result) => {
     // update user to have corresponding student_profile_id

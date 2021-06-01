@@ -14,6 +14,7 @@ import * as OtherExperiences from './controllers/other_experience_controller';
 import * as PasswordReset from './controllers/password_reset_controller';
 import * as EmailConfirmation from './controllers/email_confirmation_controller';
 import * as EmailNotification from './controllers/email_notification_controller';
+import * as AdminAction from './controllers/admin_action_controller';
 import * as S3 from './services/s3';
 import { requireAuth, requireSignin } from './services/passport';
 
@@ -171,6 +172,11 @@ router.post('/confirmemail', EmailConfirmation.confirmSignUp);
 
 // email confirmation route
 router.post('/emailnotification', EmailNotification.sendEmailNotification);
+
+// admin actions route
+router.post('/massemail', AdminAction.massEmail);
+router.post('/broadcastbanner', AdminAction.broadcastBanner);
+router.post('/massarchive', AdminAction.massArchive);
 
 // s3 route
 router.get('/sign-s3', S3.signS3);
