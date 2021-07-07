@@ -1,4 +1,5 @@
 import Student from '../models/student_model';
+import Startup from '../models/startup_model';
 import User from '../models/user_model';
 
 export const createStudent = ((req, res) => {
@@ -22,6 +23,7 @@ export const createStudent = ((req, res) => {
   student.desired_start_date = req.body.desired_start_date;
   student.desired_end_date = req.body.desired_end_date;
   student.time_commitment = req.body.time_commitment;
+  student.job_search_status = false;
 
   student.save().then((result) => {
     // update user to have corresponding student_profile_id
@@ -35,12 +37,19 @@ export const createStudent = ((req, res) => {
 });
 
 export const getStudents = (req, res) => {
-  Student.find()
+  Student.find({ job_search_status: { $exists: true} })
     .populate('relevant_classes')
     .populate('interested_industries')
     .populate('skills')
-    .then((result) => {
-      res.json(result);
+    .then((result1) => {
+      Student.find({ job_search_status: { $exists: false } })
+      .populate('relevant_classes')
+      .populate('interested_industries')
+      .populate('skills')
+        .then((result2) => {
+          result1.forEach(student => result2.push(student))
+          res.json(result2);
+      })
     })
     .catch((error) => {
       res.status(404).json({ error });
@@ -87,7 +96,6 @@ export const updateStudent = (req, res) => {
     .populate('interested_industries')
     .populate('skills')
     .then((result) => {
-      // console.log(result)
       res.json(result);
     })
     .catch((error) => {
