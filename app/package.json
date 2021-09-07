@@ -1,9 +1,8 @@
 {
-  "name": "example_express_with_es6",
-  "version": "3.0.0",
-  "description": "",
-  "author": "",
+  "name": "MCCV-backend",
+  "version": "2.0.0",
   "main": "src/server.js",
+  "repository":"https://github.com/Magnuson-Center-Campus-Ventures/mccv-frontend",
   "scripts": {
     "test": "eslint src/**.js",
     "dev": "nodemon src/server.js --exec babel-node",
@@ -13,7 +12,7 @@
   },
   "license": "ISC",
   "engines": {
-    "node": ">=9 <=13",
+    "node": "^14",
     "npm": "^5.6.0",
     "yarn": "^1.6.0"
   },

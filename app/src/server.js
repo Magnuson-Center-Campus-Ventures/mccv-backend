@@ -31,7 +31,11 @@ app.use('/api', apiRouter);
 
 // DB Setup
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/mcv';
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }).then(()=>{
+  console.log("Successfully connected to MongoDB")
+}).catch(error=>{
+  console.log("Unable to connect to MongoDB: "+error)
+});
 // set mongoose promises to es6 default
 mongoose.Promise = global.Promise;
 
