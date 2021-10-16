@@ -6,7 +6,7 @@ services:
     ports:
       - "27017:27017"
   server:
-    build: .
+    build: ./server/
     ports:
       - '9090:9090'
     volumes:
