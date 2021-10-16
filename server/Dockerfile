@@ -4,8 +4,8 @@ ENV PATH ./node_modules/.bin:$PATH
 
 ARG APP_PORT=9090
 
-RUN mkdir /app
-WORKDIR /app
+RUN mkdir /server
+WORKDIR /server
 
 COPY . .
 

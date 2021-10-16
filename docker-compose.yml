@@ -10,7 +10,7 @@ services:
     ports:
       - '9090:9090'
     volumes:
-      - ./app/:/app/
+      - ./server/:/server/
       - /app/node_modules/
     stdin_open: true
     environment:
