@@ -14,3 +14,4 @@ artifacts:
     - app/yarn.lock
     - 'app/dist/**/*'
     - Dockerfile
+    - Dockerrun.aws.json
