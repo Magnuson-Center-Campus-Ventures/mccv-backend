@@ -1,6 +1,5 @@
 .DS_Store
 server/node_modules
-server/.env
 npm-debug.log
 server/build
 server/dist
