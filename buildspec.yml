@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      docker:18
+  pre_build:
+    commands:
+    - npm install yarn -g
+artifacts:
+  type: zip
+  files: 
+    - app/package.json
+    - app/yarn.lock
+    - 'app/dist/**/*'
+    - Dockerfile
