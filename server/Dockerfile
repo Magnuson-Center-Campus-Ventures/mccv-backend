@@ -7,7 +7,7 @@ ARG APP_PORT=9090
 RUN mkdir /app
 WORKDIR /app
 
-COPY ./app ./server
+COPY ./server ./app
 
 RUN yarn install
 
