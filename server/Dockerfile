@@ -11,4 +11,7 @@ COPY . /app
 
 RUN yarn install
 
+EXPOSE $PORT
+EXPOSE 9090
+
 CMD ["yarn", "start"]
