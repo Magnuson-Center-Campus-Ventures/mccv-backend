@@ -10,8 +10,8 @@ phases:
 artifacts:
   type: zip
   files: 
-    - app/package.json
-    - app/yarn.lock
-    - 'app/dist/**/*'
+    - server/package.json
+    - server/yarn.lock
+    - 'server/dist/**/*'
     - Dockerfile
     - Dockerrun.aws.json
