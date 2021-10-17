@@ -18,5 +18,5 @@ services:
       - CHOKIDAR_USEPOLLING=true
       - 'AUTH_SECRET=${AUTH_SECRET}'
       - 'PORT=${PORT}'
-      - 'MONGODB_URI=${MONGODB_URI}''
+      - 'MONGODB_URI=${MONGODB_URI}'
     command: /bin/bash -c "yarn && yarn start"
