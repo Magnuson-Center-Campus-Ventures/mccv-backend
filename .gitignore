@@ -4,3 +4,4 @@ npm-debug.log
 server/build
 server/dist
 server/package.lock
+.env
