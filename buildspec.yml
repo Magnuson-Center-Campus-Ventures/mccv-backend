@@ -14,5 +14,3 @@ artifacts:
     - server/yarn.lock
     - 'server/dist/**/*'
     - Dockerfile
-    - Dockerrun.aws.json
-    - .ebextension
