@@ -9,7 +9,7 @@ COPY . .
 
 RUN yarn install
 
-EXPOSE $PORT
+EXPOSE 80
 EXPOSE 9090
 
 CMD ["yarn", "start"]
