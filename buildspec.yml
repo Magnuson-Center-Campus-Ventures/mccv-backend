@@ -7,6 +7,7 @@ phases:
   pre_build:
     commands:
     - npm install yarn -g
+    - /opt/elasticbeanstalk/bin/get-config environment | jq -r 'to_entries | .[] | "export \(.key)=\"\(.value)\""' > /etc/profile.d/sh.local
 artifacts:
   type: zip
   files: 
