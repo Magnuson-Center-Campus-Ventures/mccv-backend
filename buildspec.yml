@@ -1,16 +1,20 @@
 version: 0.2
 
 phases:
-  install:
-    runtime-versions:
-      docker: 18
   pre_build:
     commands:
     - npm install yarn -g
+    - yarn
+  build:
+    commands:
+    - yarn build
+  post_build:
+    commands:
+    - yarn start
+  
 artifacts:
   type: zip
   files: 
-    - server/package.json
-    - server/yarn.lock
-    - 'server/dist/**/*'
-    - Dockerfile
+    - package.json
+    - yarn.lock
+    - 'dist/**/*'
