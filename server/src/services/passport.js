@@ -6,56 +6,11 @@ import User from '../models/user_model';
 
 dotenv.config({silent: true});
 
-// Use this code snippet in your app. If you need more information about
-// configurations or implementing the sample code, visit the AWS docs:
-// https://aws.amazon.com/developers/getting-started/nodejs/ Load the AWS SDK
-var AWS = require('aws-sdk'),
-    region = "us-east-1",
-    secretName = "backend-JWT-secret",
-    secret,
-    decodedBinarySecret;
-
-// Create a Secrets Manager client
-var client = new AWS.SecretsManager({region: region});
-
-// In this sample we only handle the specific exceptions for the
-// 'GetSecretValue' API. See
-// https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
-// We rethrow the exception by default.
-const JWTsecret = (async () => {
-    return await new Promise((resolve, reject) => {
-        client.getSecretValue({
-            SecretId: secretName
-        }, function (err, data) {
-            if (err) {
-                console.log("Error when fetching AWS secret: ", err.code)
-                reject(err.code)
-            } else {
-                // Decrypts secret using the associated KMS CMK. Depending on whether the secret
-                // is a string or binary, one of these fields will be populated.
-                if ('SecretString' in data) {
-                    secret = data.SecretString;
-                } else {
-                    let buff = new Buffer(data.SecretBinary, 'base64');
-                    decodedBinarySecret = buff.toString('ascii');
-                    resolve(decodedBinarySecret)
-                }
-            }
-        });
-    })
-})();
-
-// mostly from lab5 options for local strategy, we'll use email AS the username
-// not have separate ones
-const localOptions = {
-    usernameField: 'email'
-};
-
 // options for jwt strategy we'll pass in the jwt in an `authorization` header
 // so passport can find it there
 const jwtOptions = {
     jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-    secretOrKey: JWTsecret || process.env.AUTH_SECRET
+    secretOrKey: process.env.AUTH_SECRET
 };
 // NOTE: we are not calling this a bearer token (although it technically is), if
 // you see people use Bearer in front of token on the internet you could either
