@@ -29,10 +29,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/api', apiRouter);
 
-app.use((req,res)=>{
-  console.log("req received")
-})
-
 // DB Setup
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/mcv';
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }).then(()=>{
