@@ -11,11 +11,6 @@
     "prod": "npm i; babel src -d dist; node dist/server.js"
   },
   "license": "ISC",
-  "engines": {
-    "node": "^14",
-    "npm": "^5.6.0",
-    "yarn": "^1.6.0"
-  },
   "nodemonConfig": {
     "signal": "SIGHUP",
     "delay": "1500"
