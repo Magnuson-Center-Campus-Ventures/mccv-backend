@@ -29,6 +29,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/api', apiRouter);
 
+app.use((req,res)=>{
+  console.log("req received")
+})
+
 // DB Setup
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/mcv';
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }).then(()=>{
@@ -49,4 +53,4 @@ app.get('/', (req, res) => {
 const port = process.env.PORT || 9090;
 app.listen(port);
 
-console.log(`listening on: ${port}`, process.env);
+console.log(`listening on: ${port}`);
