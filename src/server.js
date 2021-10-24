@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 app.use('/api', apiRouter);
 
 // DB Setup
-const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/mcv';
+const mongoURI = process.env.MONGODB_URI
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }).then(()=>{
   console.log("Successfully connected to MongoDB")
 }).catch(error=>{
