@@ -15,23 +15,18 @@ app.use(cors());
 // enable/disable http request logging
 app.use(morgan('dev'));
 
-// enable only if you want templating
-app.set('view engine', 'ejs');
-
-// enable only if you want static assets from folder static
-app.use(express.static('static'));
-
-// this just allows us to render ejs from the ../app/views directory
-app.set('views', path.join(__dirname, '../src/views'));
-
 // enable json message body for posting data to API
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/api', apiRouter);
 
 // DB Setup
-const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/mcv';
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+const mongoURI = process.env.MONGODB_URI
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }).then(()=>{
+  console.log("Successfully connected to MongoDB")
+}).catch(error=>{
+  console.log("Unable to connect to MongoDB: "+error)
+});
 // set mongoose promises to es6 default
 mongoose.Promise = global.Promise;
 

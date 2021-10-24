@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+    - npm install yarn -g
+    - yarn
+  build:
+    commands:
+    - yarn build
+  
+artifacts:
+  type: zip
+  files: 
+    - package.json
+    - yarn.lock
+    - 'dist/**/*'

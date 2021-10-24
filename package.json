@@ -1,22 +1,15 @@
 {
-  "name": "example_express_with_es6",
-  "version": "3.0.0",
-  "description": "",
-  "author": "",
+  "name": "dartmouth-mccv-frontend",
+  "version": "1.1.0",
   "main": "src/server.js",
+  "repository": "https://github.com/Magnuson-Center-Campus-Ventures/mccv-frontend",
   "scripts": {
     "test": "eslint src/**.js",
     "dev": "nodemon src/server.js --exec babel-node",
-    "start": "babel-node src/server.js",
-    "build": "babel src -d dist",
-    "prod": "yarn build; node dist/server.js"
+    "start": "node dist/server.js",
+    "build": "babel src -d dist"
   },
   "license": "ISC",
-  "engines": {
-    "node": ">=9 <=13",
-    "npm": "^5.6.0",
-    "yarn": "^1.6.0"
-  },
   "nodemonConfig": {
     "signal": "SIGHUP",
     "delay": "1500"
@@ -26,7 +19,7 @@
     "@babel/core": "^7.9.0",
     "@babel/node": "^7.8.7",
     "@babel/preset-env": "^7.9.5",
-    "aws-sdk": "^2.748.0",
+    "aws-sdk": "^2.1013.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -34,7 +27,7 @@
     "ejs": "^3.1.2",
     "express": "^4.17.1",
     "jwt-simple": "^0.5.6",
-    "mongoose": "^5.9.14",
+    "mongoose": "6.0.11",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
