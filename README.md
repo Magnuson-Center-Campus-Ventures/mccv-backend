@@ -15,16 +15,15 @@ So far, we have thirteen schemas to organize the data in our database. Each of t
 
 To set up this repo on your local environment, follow these steps:
 1. Clone the repo using the git URL 
-2. Install Docker for the appropriate OS from [here](https://docs.docker.com/get-docker/)
+2. Install yarn if it is not already, and run `yarn install` to install packages
 3. Create an `.env` file in the `app` directory with two variables
     - AUTH_SECRET=(random string, doesn't matter)
     - MONGODB_URI=(url to your database)
         - this variable doesn't need to be set if you're using the default local MongoDB setup
-4. Run `docker-compose up` in the terminal.
+4. Run `yarn dev` in the terminal to initiate the dev server.
 
 # Deployment
-This repo is currently set up to auto-deploy from master with travis ci and heroku.
-To deploy to our heroku server, you can push the backend to heroku with git push heroku master.
+This repo is currently deployed to an AWS Elastic Beanstalk instance. Anything pushed to the master will be synced and deployed automatically.
 
 ## Authors 📝
 
