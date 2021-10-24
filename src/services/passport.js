@@ -32,7 +32,7 @@ const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
         }
 
         if (!user) {
-            console.log("no user")
+            console.log("no user", email)
             return done(null, false);
         }
 
